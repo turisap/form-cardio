@@ -20,7 +20,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <Suspense fallback={Loading}>
+        <Suspense fallback={<Loading />}>
           <Nprogress>
             <Switch>
               <Route exact path="/" component={Home} />

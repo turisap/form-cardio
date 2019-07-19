@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const SignUpPage = () => {
+const SignUpForm = () => {
   const [src, setSrc] = useState(null);
 
   useEffect(() => {
-    axios.get('localhost:4000/trololo').then(function(response) {
-      // handle success
-      console.log(response);
-      setSrc('ldk');
-    });
+    axios
+      .get('localhost:4000/loading', { withCredentials: true })
+      .then(function(response) {
+        // handle success
+        console.log(response);
+        setSrc('ldk');
+      });
   });
 
-  return src && <img src={src} alt="trololo" />;
+  console.log(src);
+  return <div>{src && <img src={src} alt="trololo" />}lskdjflkj</div>;
 };
 
-export default SignUpPage;
+export default SignUpForm;
