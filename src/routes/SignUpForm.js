@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.headers.post['Content-Type'] =
+  'application/x-www-form-urlencoded';
+
 const SignUpForm = () => {
   const [src, setSrc] = useState(null);
 
   useEffect(() => {
-    axios
-      .get('localhost:4000/loading', { withCredentials: true })
-      .then(function(response) {
-        // handle success
-        console.log(response);
-        setSrc('ldk');
-      });
+    axios.get('loading').then(function(response) {
+      console.log(response);
+      setSrc('ldk');
+    });
   });
 
-  console.log(src);
-  return <div>{src && <img src={src} alt="trololo" />}lskdjflkj</div>;
+  return (
+    <div>
+      <img src={src} alt="trololo" />
+    </div>
+  );
 };
 
 export default SignUpForm;
