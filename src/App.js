@@ -22,11 +22,13 @@ function App() {
       <Router>
         <Suspense fallback={<Loading />}>
           <Nprogress>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/signup" component={SignUpForm} />
-              <Route component={NotFoundPage} />
-            </Switch>
+            <div className="body">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/signup" component={SignUpForm} />
+                <Route component={NotFoundPage} />
+              </Switch>
+            </div>
           </Nprogress>
         </Suspense>
       </Router>

@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import * as React from 'react';
+//import axios from 'axios';
+import styled from 'styled-components';
+//import { CONFIG } from "config";
 
-axios.defaults.baseURL = 'http://localhost:4000';
-axios.defaults.headers.post['Content-Type'] =
-  'application/x-www-form-urlencoded';
+const SignUpStyled = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 const SignUpForm = () => {
-  const [src, setSrc] = useState(null);
+  // const [src, setSrc] = React.useState(null);
+  //
+  // useEffect(() => {
+  //   axios.get(`${CONFIG.BACKEND_DEV}/loading`).then(function(response) {
+  //     console.log(response);
+  //     setSrc('http://placekitten.com/200/300');
+  //   });
+  // });
 
-  useEffect(() => {
-    axios.get('loading').then(function(response) {
-      console.log(response);
-      setSrc('ldk');
-    });
-  });
-
-  return (
-    <div>
-      <img src={src} alt="trololo" />
-    </div>
-  );
+  return <SignUpStyled>OLOLO</SignUpStyled>;
 };
 
 export default SignUpForm;
