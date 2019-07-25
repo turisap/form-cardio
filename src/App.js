@@ -1,11 +1,14 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { FormProvider } from 'react-advanced-form';
 import ErrorBoundary from 'base/ErrorBoundary';
 import Nprogress from 'base/Nprogress';
 import Loading from 'base/Loading';
 import './App.css';
 import { theme } from './styles/theme';
+import validationMessages from './lib/validationMessages';
+import validationRules from './lib/validationRules';
 
 const Home = lazy(() => import('./routes/Home'));
 const SignUpForm = lazy(() => import('./routes/SignUp/SignUpForm'));
@@ -26,14 +29,19 @@ function App() {
         <Suspense fallback={<Loading />}>
           <Nprogress>
             <ThemeProvider theme={theme}>
-              <div className="body">
-                <div className="navbar-btn">X</div>
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route path="/signup" component={SignUpForm} />
-                  <Route component={NotFoundPage} />
-                </Switch>
-              </div>
+              <FormProvider
+                rules={validationRules}
+                messages={validationMessages}
+              >
+                <div className="body">
+                  <div className="navbar-btn">X</div>
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/signup" component={SignUpForm} />
+                    <Route component={NotFoundPage} />
+                  </Switch>
+                </div>
+              </FormProvider>
             </ThemeProvider>
           </Nprogress>
         </Suspense>
