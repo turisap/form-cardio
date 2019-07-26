@@ -29,19 +29,19 @@ function App() {
         <Suspense fallback={<Loading />}>
           <Nprogress>
             <ThemeProvider theme={theme}>
-              <FormProvider
-                rules={validationRules}
-                messages={validationMessages}
-              >
-                <div className="body">
-                  <div className="navbar-btn">X</div>
-                  <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/signup" component={SignUpForm} />
-                    <Route component={NotFoundPage} />
-                  </Switch>
-                </div>
-              </FormProvider>
+              {/*<FormProvider*/}
+              {/*  rules={validationRules}*/}
+              {/*  messages={validationMessages}*/}
+              {/*>*/}
+              <div className="body">
+                <div className="navbar-btn">X</div>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/signup" component={SignUpForm} />
+                  <Route component={NotFoundPage} />
+                </Switch>
+              </div>
+              {/*</FormProvider>*/}
             </ThemeProvider>
           </Nprogress>
         </Suspense>

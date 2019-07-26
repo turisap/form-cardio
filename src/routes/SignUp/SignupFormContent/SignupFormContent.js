@@ -43,20 +43,47 @@ const StyledSignupFormContent = styled.div`
 // TODO focus on hover
 // TODO aria-busy usage on submit
 // TODO show password btn
-export const SignupFormContent = () => (
-  <StyledSignupFormContent>
-    <Form>
-      <Input label="First Name" type="text" name="signup_firstName" required />
-      <Input label="Last Name" type="text" name="signup_lastName" required />
-      <Input label="Email" type="email" name="signup_email" required />
-      <Input label="Password" type="password" name="signup_password" required />
-      <Input
-        label="Confirm Password"
-        type="password"
-        name="signup_confirm_password"
-        required
-      />
-      <button>Sign up</button>
-    </Form>
-  </StyledSignupFormContent>
-);
+export const SignupFormContent = () => {
+  const [loading, setLoading] = React.useState(false);
+  const handleSubmit = () => {
+    setLoading(true);
+    setTimeout(() => setLoading(false), 3000);
+  };
+
+  return (
+    <StyledSignupFormContent>
+      <Form action={handleSubmit}>
+        <fieldset aria-busy={loading} disabled={loading}>
+          <Input
+            label="First Name"
+            type="text"
+            name="signup_firstName"
+            required
+          />
+          <Input
+            label="Last Name"
+            type="text"
+            name="signup_lastName"
+            required
+          />
+          <Input label="Email" type="email" name="signup_email" required />
+          <Input
+            label="Password"
+            type="password"
+            name="signup_password"
+            required
+          />
+          <Input
+            label="Confirm Password"
+            type="password"
+            name="signup_confirm_password"
+            required
+          />
+        </fieldset>
+        <button type="submit" disabled={loading}>
+          Sign up
+        </button>
+      </Form>
+    </StyledSignupFormContent>
+  );
+};
