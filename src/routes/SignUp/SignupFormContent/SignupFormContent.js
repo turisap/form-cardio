@@ -8,6 +8,7 @@ const StyledSignupFormContent = styled.div`
     background: ${props => props.theme.grey_background}
     padding: 20px;
     width: 700px;
+    font-size: 1.2rem;
     & form {
         display: grid;
         grid-template-columns: 150px 1fr;
@@ -18,6 +19,7 @@ const StyledSignupFormContent = styled.div`
         grid-column: 1 / 2;
         justify-self: right;
         align-self: center;
+        margin-top: -.4rem;
     }
     
     & .input-content {
@@ -33,6 +35,8 @@ const StyledSignupFormContent = styled.div`
        grid-column: 2 / 3;
        width: 100%;
        padding: 20px;
+       font-size: 1.3rem;
+       text-transform: uppercase;
     }
 `;
 
@@ -46,6 +50,12 @@ export const SignupFormContent = () => (
       <Input label="Last Name" type="text" name="signup_lastName" required />
       <Input label="Email" type="email" name="signup_email" required />
       <Input label="Password" type="password" name="signup_password" required />
+      <Input
+        label="Confirm Password"
+        type="password"
+        name="signup_confirm_password"
+        required
+      />
       <button>Sign up</button>
     </Form>
   </StyledSignupFormContent>
