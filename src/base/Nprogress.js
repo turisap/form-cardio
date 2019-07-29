@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
 
@@ -12,7 +13,7 @@ class Nprogress extends React.Component {
   }
 
   render() {
-    return this.props.children;
+    return <Route {...this.props} />;
   }
 }
 

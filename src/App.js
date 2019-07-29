@@ -9,6 +9,7 @@ import './App.css';
 import { theme } from './styles/theme';
 import validationMessages from './lib/validationMessages';
 import validationRules from './lib/validationRules';
+import NavBar from './base/Nvabar';
 
 const Home = lazy(() => import('./routes/Home'));
 const SignUpForm = lazy(() => import('./routes/SignUp/SignUpForm'));
@@ -25,28 +26,43 @@ const NotFoundPage = lazy(() => import('./routes/404'));
 // TODO REACT CONTEXT TO BE ADDED
 // TODO USE CUSTOM HOOKS
 
+const routes = [
+  {
+    path: '/',
+    exact: true,
+    title: 'Home',
+    component: Home
+  },
+  {
+    path: '/signup',
+    component: SignUpForm,
+    title: 'Sign Up'
+  },
+  {
+    component: NotFoundPage
+  }
+];
+
 function App() {
   return (
     <ErrorBoundary>
       <Router>
         <Suspense fallback={<Loading />}>
-          <Nprogress>
-            <ThemeProvider theme={theme}>
-              <FormProvider
-                rules={validationRules}
-                messages={validationMessages}
-              >
-                <div className="body">
-                  <div className="navbar-btn">X</div>
-                  <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/signup" component={SignUpForm} />
-                    <Route component={NotFoundPage} />
-                  </Switch>
-                </div>
-              </FormProvider>
-            </ThemeProvider>
-          </Nprogress>
+          <ThemeProvider theme={theme}>
+            <FormProvider rules={validationRules} messages={validationMessages}>
+              <div className="body">
+                <NavBar />
+                <Switch>
+                  {routes.map(route => (
+                    <Nprogress key={route.title} {...route} />
+                  ))}
+                  {/*<Route exact path="/" component={Home} />*/}
+                  {/*<Route path="/signup" component={SignUpForm} />*/}
+                  {/*<Route component={NotFoundPage} />*/}
+                </Switch>
+              </div>
+            </FormProvider>
+          </ThemeProvider>
         </Suspense>
       </Router>
     </ErrorBoundary>
