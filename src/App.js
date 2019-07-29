@@ -22,6 +22,9 @@ const NotFoundPage = lazy(() => import('./routes/404'));
 
 // TODO MUST DO ALL TESTS STRAIGHT AFTER CREATING A FORM
 
+// TODO REACT CONTEXT TO BE ADDED
+// TODO USE CUSTOM HOOKS
+
 function App() {
   return (
     <ErrorBoundary>
