@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { darken } from 'polished';
 import { Form } from 'react-advanced-form';
 import Input from 'base/inputs/Input';
 
@@ -10,13 +9,7 @@ const StyledSignupFormContent = styled.div`
     padding: 20px;
     width: 700px;
     font-size: 1.2rem;
-    
-    // form {
-    //   display: grid;
-    //   grid-gap: 30px;
-    //   grid-template-columns: 1fr;
-    //   grid-template-rows: 1fr 80px;
-    // }
+    margin: 0 auto;
     
     & .signup-form__inner {
       display:grid;
@@ -25,8 +18,12 @@ const StyledSignupFormContent = styled.div`
     }
     
     fieldset {
-        padding 20px;
+     
         border:none;
+        
+        &[aria-busy='true'] {
+          opacity: 50%;
+        }
     }
  
     & label {
@@ -39,6 +36,8 @@ const StyledSignupFormContent = styled.div`
     & input {
         width: 100%;
         height: 40px;
+        border:none;
+        outline: none;
     }
     
     & button {
@@ -57,23 +56,50 @@ const StyledSignupFormContent = styled.div`
         background: ${props => props.theme.green_background_hover};
         transition: background 0.2s ease;
       }
+      &[disabled], &:disabled{
+        opacity: 0.5;
+      }
     }
     
-    // & .input-content {
-    //     grid-column: 2 / 3;
-    // }
-    //
- 
-    //
-    // & button {
-    //    grid-column: 2 / 3;
-    //    width: 100%;
-    //    padding: 20px;
-    //    font-size: 1.3rem;
-    //    text-transform: uppercase;
-    // }
-    //
     
+    @media (max-width: 800px) {
+      & {
+        width: 400px;
+      }
+      
+      & .signup-form__inner {
+      display:grid;
+      grid-gap: 20px;
+      grid-template-columns: 70px 1fr;
+    }
+    
+    @media (max-width: 500px) {
+      & {
+        width: 90%;
+        padding: 5px;
+      }
+      
+      & .signup-form__inner {
+      display:grid;
+      grid-gap: 20px;
+      grid-template-columns: 50px 1fr;
+      
+      label, .form-error {
+        font-size: 16px;
+      }
+     
+     & fieldset {
+        padding 0px;
+      }
+    }
+    
+    @media (max-width: 1074px) and (orientation: landscape) {
+        form {
+          
+        }
+    }
+    
+  }
 `;
 
 // TODO focus on hover
