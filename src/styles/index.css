@@ -1,0 +1,74 @@
+@import-normalize;
+@import url('https://fonts.googleapis.com/css?family=Darker+Grotesque&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Darker Grotesque', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 600;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.body {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 150px 1fr;
+}
+
+#modal__container {
+  background: rgba(36, 36, 36, 0.44);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100vw;
+  height: 100vh;
+}
+
+.formError {
+  color: #ec867d;
+  margin-top: 0.4rem;
+}
+
+.container {
+  width: 1240px;
+  height: 100%;
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 1240px) {
+  .container {
+    width: 800px;
+  }
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: 400px;
+  }
+}
+
+@media (max-width: 1074px) and (orientation: landscape) {
+  .body {
+    width: 100%;
+  }
+
+  div.container {
+    width: 90% !important;
+    margin: 0 auto;
+  }
+}
