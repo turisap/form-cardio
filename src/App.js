@@ -56,9 +56,6 @@ function App() {
                   {routes.map(route => (
                     <Nprogress key={route.title} {...route} />
                   ))}
-                  {/*<Route exact path="/" component={Home} />*/}
-                  {/*<Route path="/signup" component={SignUpForm} />*/}
-                  {/*<Route component={NotFoundPage} />*/}
                 </Switch>
               </div>
             </FormProvider>

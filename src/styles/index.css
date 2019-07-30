@@ -20,6 +20,8 @@ code {
   overflow-x: hidden;
   display: grid;
   justify-content: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 150px 1fr;
 }
 
 .formError {
