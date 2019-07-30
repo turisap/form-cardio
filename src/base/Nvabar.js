@@ -21,6 +21,7 @@ const StyledNav = styled.nav`
     justify-content: stretch;
     align-items: center;
     border-right: ${props => props.theme.black_border};
+    padding: 10px;
   }
 
   a {
@@ -52,6 +53,11 @@ const NavBar = () => {
         <li>
           <NavLink to="/signup" activeClassName="navlink--active">
             SignUP
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/contact-us" activeClassName="navlink--active">
+            Contact us
           </NavLink>
         </li>
       </ul>

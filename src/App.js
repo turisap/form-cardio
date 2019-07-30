@@ -13,6 +13,7 @@ import NavBar from './base/Nvabar';
 
 const Home = lazy(() => import('./routes/Home'));
 const SignUpForm = lazy(() => import('./routes/SignUp/SignUpForm'));
+const ContactUsForm = lazy(() => import('./routes/ContactUs/ContactUsForm'));
 const NotFoundPage = lazy(() => import('./routes/404'));
 
 // TODO on page load animation like that one on gitlab
@@ -39,7 +40,13 @@ const routes = [
     title: 'Sign Up'
   },
   {
-    component: NotFoundPage
+    path: '/contact-us',
+    component: ContactUsForm,
+    title: 'Contact Us'
+  },
+  {
+    component: NotFoundPage,
+    title: 'not found'
   }
 ];
 
