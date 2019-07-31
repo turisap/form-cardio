@@ -103,7 +103,6 @@ const StyledSignupFormContent = styled.div`
 `;
 
 // TODO focus on hover
-// TODO aria-busy usage on submit
 // TODO show password btn
 export const SignupFormContent = () => {
   const [loading, setLoading] = React.useState(false);

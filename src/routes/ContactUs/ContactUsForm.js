@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Modal from 'base/Modal';
+import ContactUsFormContent from './ContactUsFormContent/ContactUsformContent';
 
 const StyledContuctUsForm = styled.div``;
 
@@ -11,11 +12,12 @@ const ContactUsForm = () => {
   useEffect(() => {
     setTimeout(() => toggleModal(), 1000);
   }, []);
+
   return (
     <StyledContuctUsForm>
       {modalOpen && (
         <Modal>
-          <p>trufel</p>
+          <ContactUsFormContent closeHandler={() => setModal(false)} />
         </Modal>
       )}
     </StyledContuctUsForm>
