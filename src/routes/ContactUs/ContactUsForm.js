@@ -10,7 +10,7 @@ const ContactUsForm = () => {
   const toggleModal = () => setModal(!modalOpen);
 
   useEffect(() => {
-    setTimeout(() => toggleModal(), 1000);
+    setTimeout(() => toggleModal(), 200);
   }, []);
 
   return (
