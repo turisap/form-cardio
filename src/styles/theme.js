@@ -8,6 +8,7 @@ export const theme = {
   border_sound_active_step: '3px solid #b23b00',
   border_sound_step_circle: '1px solid #c6c6c6',
   border_offwhite: '1px solid #ffffff',
+  border_orange: '1px solid #ff5500',
 
   // COLORS
   offwhite_background: '#ffffff',
@@ -21,5 +22,6 @@ export const theme = {
   text_on_dark: '#999',
   text_on_dark_hover: lighten(0.15, '#999'),
   text_on_red: '#c6c6c6',
-  text_orange: '#b23b00'
+  text_orange: '#b23b00',
+  text_on_white: '#959595'
 };

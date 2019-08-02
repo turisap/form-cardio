@@ -9,7 +9,7 @@ const Steps = ({ step }) => (
       switch (step) {
         case 1:
           return (
-            <Select name="olol" label="issue">
+            <Select name="olol" label="Please select topic">
               <option value={null}>- - - - - - - - - - - -</option>
               <option value="Get help with your personal life">
                 Get help with your personal life

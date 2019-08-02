@@ -50,11 +50,10 @@ const StyledContactForm = styled.div`
         
         p {
             margin: 0;
-            display: grid;
-            grid-template-columns: 1fr;
-            align-items: center;
-            justify-items: center;
-            align-items: center;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
             font-weight: 500;
             color: rgba(255,255,255,0.7);
             text-transform: uppercase;
@@ -62,13 +61,13 @@ const StyledContactForm = styled.div`
         
         p.contactus-form__stepnumber {
             align-self: end;
-            width: 35px;
-            height: 35px
+            width: 30px;
+            height: 30px
             border: ${props => props.theme.border_sound_step_circle};
             border-radius: 50%;
             color: inherit;
             font-size: 30px;
-            font-weight: 700;
+            font-weight: 500;
             background: ${props => props.theme.offwhite_background}
         }
         
@@ -88,8 +87,77 @@ const StyledContactForm = styled.div`
         background: ${props => props.theme.offwhite_background}
      }
      
+    .contactus-form__content {
+      padding: 20px 60px;
+      
+      
+      .form-group {
+        display:grid;
+        grid-template-rows: 40px 54px;
+        
+        label {
+          align-self: end;
+          color : ${props => props.theme.text_on_white};
+          margin-bottom: 10px;
+          font-weight: 300;
+        }
+        
+        select {
+          background: transparent;
+          cursor: pointer;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          text-indent: 1px;
+          text-overflow: '';
+          border: ${props => props.theme.border_sound};
+          color : ${props => props.theme.text_on_white};
+          padding-left: 5px;
+          font-size: 16px;
+        }
+        
+        option {
+          color : ${props => props.theme.text_on_white};
+          padding: 5px 17px;
+          font-size: 16px;
+        }
+       
+       select:focus { outline:none}
+      }
+    }
+     
      .contactus-form__footer {
-        border-top: ${props => props.theme.border_sound}
+        border-top: ${props => props.theme.border_sound};
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items:center;
+        align-content: space-around;
+        
+        button {
+          width: 250px;
+          height: 46px;
+          background: transparent;
+          outline: none;
+          border: ${props => props.theme.border_orange};
+          border-radius: 3px;
+          font-size: 16px;
+          font-weight: bold;
+          color: ${props => props.theme.text_orange};
+          cursor:pointer;
+        }
+        
+        button:hover {
+          background: ${props => props.theme.orange_background};
+          color: #ffffff
+        }
+        
+        button:disabled {
+          opacity: 0.5;
+          cursor: default;
+          &:hover {
+            background: none;
+            color: ${props => props.theme.text_orange};
+          }
+        }
      }
 `;
 
@@ -131,9 +199,12 @@ const ContactUsFormContent = props => {
         </div>
       </div>
       <div className="contactus-form__content">
-        <Steps step={1} />
+        <Steps step={step} />
       </div>
-      <div className="contactus-form__footer">Footer</div>
+      <div className="contactus-form__footer">
+        {step > 1 && <button>Back</button>}
+        {step < 3 && <button disabled={true}>Continue</button>}
+      </div>
     </StyledContactForm>
   );
 };
