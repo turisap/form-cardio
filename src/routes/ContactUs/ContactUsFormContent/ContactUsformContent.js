@@ -3,6 +3,7 @@ import Proptypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
 import Steps from './Steps';
+import contactUsFormReducer from './contactUsFormReducer';
 
 const StyledContactForm = styled.div`
     width: 600px;
@@ -162,7 +163,9 @@ const StyledContactForm = styled.div`
 `;
 
 const ContactUsFormContent = props => {
-  const [step, setStep] = React.useState(1);
+  const [state, dispatch] = React.useReducer(contactUsFormReducer, {
+    activeStep: 1
+  });
 
   return (
     <StyledContactForm>
@@ -184,26 +187,50 @@ const ContactUsFormContent = props => {
           ></path>
         </svg>
         <div className="contactus-form__steps--inner">
-          <div className={cn('contactus-form__step', { checked: step >= 1 })}>
+          <div
+            className={cn('contactus-form__step', {
+              checked: state.activeStep >= 1
+            })}
+          >
             <p className="contactus-form__stepnumber">1</p>
             <p className="contactus-form__steptext">Think</p>
           </div>
-          <div className={cn('contactus-form__step', { checked: step >= 2 })}>
+          <div
+            className={cn('contactus-form__step', {
+              checked: state.activeStep >= 2
+            })}
+          >
             <p className="contactus-form__stepnumber">2</p>
             <p className="contactus-form__steptext">Check</p>
           </div>
-          <div className={cn('contactus-form__step', { checked: step >= 3 })}>
+          <div
+            className={cn('contactus-form__step', {
+              checked: state.activeStep >= 3
+            })}
+          >
             <p className="contactus-form__stepnumber">3</p>
             <p className="contactus-form__steptext">Submit</p>
           </div>
         </div>
       </div>
       <div className="contactus-form__content">
-        <Steps step={step} />
+        {/*// TODO REMOVE THIS PROP*/}
+        <Steps step={state.activeStep} />
       </div>
       <div className="contactus-form__footer">
-        {step > 1 && <button>Back</button>}
-        {step < 3 && <button disabled={true}>Continue</button>}
+        {state.activeStep > 1 && (
+          <button onClick={() => dispatch({ type: 'DECREMENT_ACTIVE_STEP' })}>
+            Back
+          </button>
+        )}
+        {state.activeStep < 3 && (
+          <button
+            disabled={false}
+            onClick={() => dispatch({ type: 'INCREMENT_ACTIVE_STEP' })}
+          >
+            Continue
+          </button>
+        )}
       </div>
     </StyledContactForm>
   );

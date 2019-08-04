@@ -16,6 +16,8 @@ const SignUpForm = lazy(() => import('./routes/SignUp/SignUpForm'));
 const ContactUsForm = lazy(() => import('./routes/ContactUs/ContactUsForm'));
 const NotFoundPage = lazy(() => import('./routes/404'));
 
+const FormContext = React.createContext();
+
 // TODO on page load animation like that one on gitlab
 // TODO add loading component
 // TODO add Google Analitics to count visitors
@@ -55,18 +57,23 @@ function App() {
     <ErrorBoundary>
       <Router>
         <Suspense fallback={<Loading />}>
-          <ThemeProvider theme={theme}>
-            <FormProvider rules={validationRules} messages={validationMessages}>
-              <div className="body">
-                <NavBar />
-                <Switch>
-                  {routes.map(route => (
-                    <Nprogress key={route.title} {...route} />
-                  ))}
-                </Switch>
-              </div>
-            </FormProvider>
-          </ThemeProvider>
+          <FormContext.Provider>
+            <ThemeProvider theme={theme}>
+              <FormProvider
+                rules={validationRules}
+                messages={validationMessages}
+              >
+                <div className="body">
+                  <NavBar />
+                  <Switch>
+                    {routes.map(route => (
+                      <Nprogress key={route.title} {...route} />
+                    ))}
+                  </Switch>
+                </div>
+              </FormProvider>
+            </ThemeProvider>
+          </FormContext.Provider>
         </Suspense>
       </Router>
     </ErrorBoundary>
