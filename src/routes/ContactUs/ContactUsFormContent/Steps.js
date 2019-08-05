@@ -1,14 +1,12 @@
 import React from 'react';
 import { Form } from 'react-advanced-form';
 import Select from '../../../base/inputs/Select';
-import contactUsFormReducer from './contactUsFormReducer';
 
-const Steps = () => {
-  const [state, dispatch] = React.useReducer(contactUsFormReducer, {});
+const Steps = props => {
   return (
     <Form>
       {(function() {
-        switch (state.activeStep) {
+        switch (props.step) {
           case 1:
             return (
               <Select name="olol" label="Please select topic">

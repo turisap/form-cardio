@@ -10,13 +10,13 @@ import { theme } from './styles/theme';
 import validationMessages from './lib/validationMessages';
 import validationRules from './lib/validationRules';
 import NavBar from './base/Nvabar';
+import FormContext from './context/formcontext';
+import contactUsFormReducer from './reducers/contactUsFormReducer';
 
 const Home = lazy(() => import('./routes/Home'));
 const SignUpForm = lazy(() => import('./routes/SignUp/SignUpForm'));
 const ContactUsForm = lazy(() => import('./routes/ContactUs/ContactUsForm'));
 const NotFoundPage = lazy(() => import('./routes/404'));
-
-const FormContext = React.createContext();
 
 // TODO on page load animation like that one on gitlab
 // TODO add loading component
@@ -53,11 +53,23 @@ const routes = [
 ];
 
 function App() {
+  const [contactUsFormState, contactUsFormDispatch] = React.useReducer(
+    contactUsFormReducer,
+    {
+      activeStep: 1
+    }
+  );
+
   return (
     <ErrorBoundary>
       <Router>
         <Suspense fallback={<Loading />}>
-          <FormContext.Provider>
+          <FormContext.Provider
+            value={{
+              contactUsFormDispatch,
+              contactUsFormState
+            }}
+          >
             <ThemeProvider theme={theme}>
               <FormProvider
                 rules={validationRules}
