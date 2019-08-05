@@ -46,9 +46,7 @@ const NavBar = () => {
     <StyledNav className="navbar__container">
       <ul>
         <li>
-          <NavLink to="/">
-            <a href="#">Home</a>
-          </NavLink>
+          <NavLink to="/">Home</NavLink>
         </li>
         <li>
           <NavLink to="/signup" activeClassName="navlink--active">

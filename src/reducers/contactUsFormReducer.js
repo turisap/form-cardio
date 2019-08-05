@@ -1,7 +1,6 @@
 const contactUsFormReducer = (state, action) => {
   switch (action.type) {
     case 'INCREMENT_ACTIVE_STEP':
-      alert('iu')
       return {
         ...state,
         activeStep: state.activeStep + 1

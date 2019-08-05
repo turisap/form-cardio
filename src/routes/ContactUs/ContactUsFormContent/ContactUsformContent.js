@@ -166,7 +166,6 @@ const ContactUsFormContent = props => {
   const { contactUsFormState, contactUsFormDispatch } = React.useContext(
     FormsContext
   );
-  console.log(contactUsFormState);
 
   return (
     <StyledContactForm>

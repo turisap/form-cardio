@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import React, { Suspense, lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { FormProvider } from 'react-advanced-form';
@@ -21,7 +21,6 @@ const NotFoundPage = lazy(() => import('./routes/404'));
 // TODO on page load animation like that one on gitlab
 // TODO add loading component
 // TODO add Google Analitics to count visitors
-// TODO Portals
 // TODO try-catch in event listeners
 
 // TODO MUST DO ALL TESTS STRAIGHT AFTER CREATING A FORM
