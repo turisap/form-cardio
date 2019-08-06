@@ -167,6 +167,13 @@ const ContactUsFormContent = props => {
     FormsContext
   );
 
+  const { activeStep, finishedStep } = contactUsFormState;
+
+  // React.useEffect(() => console.log({
+  //   activeStep,
+  //   finishedStep
+  // }), [])
+
   return (
     <StyledContactForm>
       <div className="contactus-form__steps">
@@ -229,7 +236,7 @@ const ContactUsFormContent = props => {
         )}
         {contactUsFormState.activeStep < 3 && (
           <button
-            disabled={false}
+            disabled={finishedStep >= activeStep ? false : true}
             onClick={() =>
               contactUsFormDispatch({ type: 'INCREMENT_ACTIVE_STEP' })
             }

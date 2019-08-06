@@ -10,6 +10,17 @@ const contactUsFormReducer = (state, action) => {
         ...state,
         activeStep: state.activeStep - 1
       };
+    case 'SET_STEP_FINISHED':
+      return {
+        ...state,
+        finishedStep: action.finishedStep
+      };
+    case 'INVALIDATE_STEP':
+      console.log('invalidate step');
+      return {
+        ...state,
+        finishedStep: state.activeStep === 0 ? 0 : state.activeStep - 1
+      };
     default:
       return state;
   }

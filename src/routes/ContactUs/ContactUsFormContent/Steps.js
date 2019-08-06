@@ -1,16 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form } from 'react-advanced-form';
 import Select from '../../../base/inputs/Select';
+import FormsContext from '../../../context/formcontext';
 
 const Steps = props => {
+  const { contactUsFormState, contactUsFormDispatch } = useContext(
+    FormsContext
+  );
+
+  const selectHandler = ({ nextValue }) => {
+    console.log(nextValue);
+    if (nextValue !== '0') {
+      console.log('disapthc VALID');
+      contactUsFormDispatch({
+        type: 'SET_STEP_FINISHED',
+        finishedStep: 1
+      });
+    }
+    //else if(e.nextValue === "0") {
+    //   console.log('disapthc INVALID')
+    //   contactUsFormDispatch({
+    //     type : "INVALIDATE_STEP",
+    //   })
+    // }
+  };
+
   return (
     <Form>
       {(function() {
         switch (props.step) {
           case 1:
             return (
-              <Select name="olol" label="Please select topic">
-                <option value={null}>- - - - - - - - - - - -</option>
+              <Select
+                name="select issue"
+                label="Please select topic"
+                onChange={selectHandler}
+              >
+                <option value={0}>- - - - - - - - - - - -</option>
                 <option value="Get help with your personal life">
                   Get help with your personal life
                 </option>

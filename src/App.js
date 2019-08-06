@@ -55,7 +55,8 @@ function App() {
   const [contactUsFormState, contactUsFormDispatch] = React.useReducer(
     contactUsFormReducer,
     {
-      activeStep: 1
+      activeStep: 1,
+      finishedStep: 0
     }
   );
 
