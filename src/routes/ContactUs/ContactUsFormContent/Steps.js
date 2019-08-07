@@ -3,7 +3,7 @@ import { Form } from 'react-advanced-form';
 import Select from '../../../base/inputs/Select';
 import FormsContext from '../../../context/formcontext';
 
-const Steps = props => {
+const Steps = () => {
   const { contactUsFormState, contactUsFormDispatch } = useContext(
     FormsContext
   );
@@ -16,19 +16,18 @@ const Steps = props => {
         type: 'SET_STEP_FINISHED',
         finishedStep: 1
       });
+    } else if (nextValue === '0') {
+      console.log('disapthc INVALID');
+      contactUsFormDispatch({
+        type: 'INVALIDATE_STEP'
+      });
     }
-    //else if(e.nextValue === "0") {
-    //   console.log('disapthc INVALID')
-    //   contactUsFormDispatch({
-    //     type : "INVALIDATE_STEP",
-    //   })
-    // }
   };
 
   return (
     <Form>
       {(function() {
-        switch (props.step) {
+        switch (contactUsFormState.activeStep) {
           case 1:
             return (
               <Select
