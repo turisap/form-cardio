@@ -166,13 +166,8 @@ const ContactUsFormContent = props => {
   const { contactUsFormState, contactUsFormDispatch } = React.useContext(
     FormsContext
   );
-
+  const [invalidStep, setInvalidStep] = React.useState(true);
   const { activeStep, finishedStep } = contactUsFormState;
-
-  // React.useEffect(() => console.log({
-  //   activeStep,
-  //   finishedStep
-  // }), [])
 
   return (
     <StyledContactForm>
@@ -221,8 +216,7 @@ const ContactUsFormContent = props => {
         </div>
       </div>
       <div className="contactus-form__content">
-        {/*// TODO REMOVE THIS PROP*/}
-        <Steps step={contactUsFormState.activeStep} />
+        <Steps setInvalidStep={setInvalidStep} />
       </div>
       <div className="contactus-form__footer">
         {contactUsFormState.activeStep > 1 && (
@@ -236,7 +230,7 @@ const ContactUsFormContent = props => {
         )}
         {contactUsFormState.activeStep < 3 && (
           <button
-            disabled={finishedStep >= activeStep ? false : true}
+            disabled={invalidStep}
             onClick={() =>
               contactUsFormDispatch({ type: 'INCREMENT_ACTIVE_STEP' })
             }

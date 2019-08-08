@@ -3,25 +3,15 @@ import { Form } from 'react-advanced-form';
 import Select from '../../../base/inputs/Select';
 import FormsContext from '../../../context/formcontext';
 
-const Steps = () => {
-  const { contactUsFormState, contactUsFormDispatch } = useContext(
-    FormsContext
-  );
+const Steps = ({ setInvalidStep }) => {
+  const { contactUsFormState } = useContext(FormsContext);
 
   const selectHandler = ({ nextValue }) => {
-    console.log(nextValue);
-    if (nextValue !== '0') {
-      console.log('disapthc VALID');
-      contactUsFormDispatch({
-        type: 'SET_STEP_FINISHED',
-        finishedStep: 1
-      });
-    } else if (nextValue === '0') {
-      console.log('disapthc INVALID');
-      contactUsFormDispatch({
-        type: 'INVALIDATE_STEP'
-      });
+    if (nextValue === 'nothing') {
+      setInvalidStep(true);
+      return;
     }
+    setInvalidStep(false);
   };
 
   return (
@@ -35,7 +25,7 @@ const Steps = () => {
                 label="Please select topic"
                 onChange={selectHandler}
               >
-                <option value={0}>- - - - - - - - - - - -</option>
+                <option value={'nothing'}>- - - - - - - - - - - -</option>
                 <option value="Get help with your personal life">
                   Get help with your personal life
                 </option>
