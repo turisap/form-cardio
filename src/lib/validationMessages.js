@@ -44,6 +44,18 @@ export default {
       rule: {
         matches: 'Passwords should match'
       }
+    },
+
+    /**
+     * Submit and issue form
+     */
+    issue_description: {
+      rule: {
+        minLength:
+          'Your issue description should be at least 20 characters long',
+        maxLength:
+          'Your issue description should be no longer than 100 characters'
+      }
     }
   }
 };

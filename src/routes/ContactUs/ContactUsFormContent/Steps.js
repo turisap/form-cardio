@@ -1,7 +1,33 @@
 import React, { useContext } from 'react';
 import { Form } from 'react-advanced-form';
 import Select from '../../../base/inputs/Select';
+import styled from 'styled-components';
 import FormsContext from '../../../context/formcontext';
+import Textarea from '../../../base/inputs/TextArea';
+
+const StyledIssueDescription = styled.div`
+  .issue-description__title {
+    font-size: 45px;
+    font-weight: 500;
+  }
+
+  .issue-description__text {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  textarea {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 5px 9px;
+    height: 200px;
+    resize: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+`;
 
 const Steps = ({ setInvalidStep }) => {
   const { contactUsFormState } = useContext(FormsContext);
@@ -14,10 +40,20 @@ const Steps = ({ setInvalidStep }) => {
     setInvalidStep(false);
   };
 
+  const textAreaChangeHandler = () => {
+    console.log('change');
+  };
+
+  const saveToState = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
-    <Form>
+    <Form noValidate={false}>
       {(function() {
-        switch (contactUsFormState.activeStep) {
+        switch (/*contactUsFormState.activeStep*/ 2) {
           case 1:
             return (
               <Select
@@ -26,8 +62,8 @@ const Steps = ({ setInvalidStep }) => {
                 onChange={selectHandler}
               >
                 <option value={'nothing'}>- - - - - - - - - - - -</option>
-                <option value="Get help with your personal life">
-                  Get help with your personal life
+                <option value="Get help with your studies">
+                  Get help with your studies
                 </option>
                 <option value="Order cookies">
                   Order a cartoon of cookies
@@ -41,7 +77,20 @@ const Steps = ({ setInvalidStep }) => {
               </Select>
             );
           case 2:
-            return <p>OLOLO</p>;
+            return (
+              <StyledIssueDescription>
+                <div className="issue-description__title">How can we help?</div>
+                <div className="issue-description__text">
+                  We are more than happy to help you to resolve your issue.
+                  Please tell uss the details about what happened
+                </div>
+                <Textarea
+                  name="issue_description"
+                  placeholder="Please type description for your issue here (between 20 and 100 characters)"
+                  onChange={textAreaChangeHandler}
+                />
+              </StyledIssueDescription>
+            );
           default:
             return <p>DEBUG ME</p>;
         }

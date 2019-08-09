@@ -34,6 +34,10 @@ const validationRules = {
       matches: ({ value, get }) => {
         return value === get(['signup_password', 'value']);
       }
+    },
+    issue_description: {
+      minLength: ({ value }) => value.length > 20,
+      maxLength: ({ value }) => value.length <= 100
     }
   }
 };
