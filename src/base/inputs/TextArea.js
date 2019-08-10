@@ -30,7 +30,7 @@ class Textarea extends React.Component {
       .join(' ');
 
     return (
-      <div className="form-group">
+      <div className="form-group-textarea">
         {label && (
           <label className="form-control-label" htmlFor={id || name}>
             {label}
@@ -45,7 +45,7 @@ class Textarea extends React.Component {
 
         {errors &&
           errors.map((error, index) => (
-            <div key={index} className="form-control-feedback">
+            <div key={index} className="formError">
               {error}
             </div>
           ))}

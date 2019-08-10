@@ -6,6 +6,10 @@ import FormsContext from '../../../context/formcontext';
 import Textarea from '../../../base/inputs/TextArea';
 
 const StyledIssueDescription = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 45px 55px 250px;
+
   .issue-description__title {
     font-size: 45px;
     font-weight: 500;
@@ -16,7 +20,13 @@ const StyledIssueDescription = styled.div`
     font-size: 18px;
   }
 
+  .form-group-textarea {
+    display: grid;
+    grid-template-rows: 230px 50px;
+  }
+
   textarea {
+    box-size: border-box;
     margin-top: 10px;
     margin-bottom: 5px;
     padding: 5px 9px;
@@ -40,8 +50,12 @@ const Steps = ({ setInvalidStep }) => {
     setInvalidStep(false);
   };
 
-  const textAreaChangeHandler = () => {
-    console.log('change');
+  const textAreaChangeHandler = e => {
+    if (!e.fieldProps.errors) {
+      setInvalidStep(false);
+      return;
+    }
+    setInvalidStep(true);
   };
 
   const saveToState = e => {
@@ -82,7 +96,7 @@ const Steps = ({ setInvalidStep }) => {
                 <div className="issue-description__title">How can we help?</div>
                 <div className="issue-description__text">
                   We are more than happy to help you to resolve your issue.
-                  Please tell uss the details about what happened
+                  Please tell us the details about what happened
                 </div>
                 <Textarea
                   name="issue_description"
