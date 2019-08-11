@@ -169,6 +169,7 @@ const ContactUsFormContent = props => {
   const [invalidStep, setInvalidStep] = React.useState(true);
   const { activeStep, finishedStep } = contactUsFormState;
 
+  // TODO TiICK overlay over finished steps
   return (
     <StyledContactForm>
       <div className="contactus-form__steps">

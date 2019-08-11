@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form } from 'react-advanced-form';
 import Select from '../../../base/inputs/Select';
 import styled from 'styled-components';
@@ -39,8 +39,53 @@ const StyledIssueDescription = styled.div`
   }
 `;
 
+const StyledStep3 = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  grid-gap: 20px;
+  padding-top: 50px;
+
+  & .issue-submit__banner {
+    border: ${props => props.theme.border_orange};
+    border-radius: 3px;
+    padding: 20px;
+    display: grid;
+    grid-template-column: 1fr;
+    grid-template-rows: 30px 50px 70px;
+
+    p {
+      width: 250px;
+      height: 46px;
+      background: transparent;
+      outline: none;
+      border: ${props => props.theme.border_orange};
+      border-radius: 3px;
+      font-size: 16px;
+      font-weight: bold;
+      color: ${props => props.theme.text_orange};
+      cursor: pointer;
+    }
+
+    p:hover {
+      background: ${props => props.theme.orange_background};
+      color: #ffffff;
+    }
+    & .issue-submit__title {
+      font-size: 24px;
+      color: ${props => props.theme.text_orange};
+    }
+
+    & .issue-submit__text {
+      line-height: 14px;
+      color: ${props => props.theme.text_on_white};
+    }
+  }
+`;
+
 const Steps = ({ setInvalidStep }) => {
   const { contactUsFormState } = useContext(FormsContext);
+  const [submitting, setSubmitting] = useState(false);
 
   const selectHandler = ({ nextValue }) => {
     if (nextValue === 'nothing') {
@@ -58,16 +103,16 @@ const Steps = ({ setInvalidStep }) => {
     setInvalidStep(true);
   };
 
-  const saveToState = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  const handleSubmit = e => {
+    setSubmitting(true);
+    setTimeout(() => setSubmitting(false), 1500);
   };
 
+  // TODO loading button animation
   return (
     <Form noValidate={false}>
       {(function() {
-        switch (/*contactUsFormState.activeStep*/ 2) {
+        switch (/*contactUsFormState.activeStep*/ 3) {
           case 1:
             return (
               <Select
@@ -104,6 +149,27 @@ const Steps = ({ setInvalidStep }) => {
                   onChange={textAreaChangeHandler}
                 />
               </StyledIssueDescription>
+            );
+          case 3:
+            return (
+              <StyledStep3>
+                <div className="issue-submit__banner">
+                  <div className="issue-submit__title">Email Us</div>
+                  <div className="issue-submit__text">
+                    We will be back to you once we figured out the solution
+                  </div>
+                  <p onClick={handleSubmit}>
+                    {submitting ? 'kj' : 'Send Email'}
+                  </p>
+                </div>
+                <div className="issue-submit__banner">
+                  <div className="issue-submit__title">Open a ticket</div>
+                  <div className="issue-submit__text">
+                    Ask our community and get their feedback
+                  </div>
+                  <p>{submitting ? 'kj' : 'Open'}</p>
+                </div>
+              </StyledStep3>
             );
           default:
             return <p>DEBUG ME</p>;
