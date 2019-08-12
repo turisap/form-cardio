@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Form } from 'react-advanced-form';
 import Select from '../../../base/inputs/Select';
 import styled from 'styled-components';
+import { MoonLoader } from 'react-spinners';
 import FormsContext from '../../../context/formcontext';
 import Textarea from '../../../base/inputs/TextArea';
 
@@ -41,10 +42,11 @@ const StyledIssueDescription = styled.div`
 
 const StyledStep3 = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 220px 220px;
   justify-content: space-between;
   grid-gap: 20px;
   padding-top: 50px;
+  max-width: 480px;
 
   & .issue-submit__banner {
     border: ${props => props.theme.border_orange};
@@ -54,8 +56,8 @@ const StyledStep3 = styled.div`
     grid-template-column: 1fr;
     grid-template-rows: 30px 50px 70px;
 
-    p {
-      width: 250px;
+    .issue-submit__button {
+      width: 180px;
       height: 46px;
       background: transparent;
       outline: none;
@@ -65,9 +67,14 @@ const StyledStep3 = styled.div`
       font-weight: bold;
       color: ${props => props.theme.text_orange};
       cursor: pointer;
+      justify-self: center;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
     }
 
-    p:hover {
+    .issue-submit__button:hover {
       background: ${props => props.theme.orange_background};
       color: #ffffff;
     }
@@ -85,7 +92,8 @@ const StyledStep3 = styled.div`
 
 const Steps = ({ setInvalidStep }) => {
   const { contactUsFormState } = useContext(FormsContext);
-  const [submitting, setSubmitting] = useState(false);
+  const [submittingEmail, setSubmittingEmail] = useState(false);
+  const [submittingTicket, setSubmittingTicket] = useState(false);
 
   const selectHandler = ({ nextValue }) => {
     if (nextValue === 'nothing') {
@@ -103,12 +111,11 @@ const Steps = ({ setInvalidStep }) => {
     setInvalidStep(true);
   };
 
-  const handleSubmit = e => {
-    setSubmitting(true);
-    setTimeout(() => setSubmitting(false), 1500);
+  const handleSubmit = submitFunction => {
+    submitFunction(true);
+    setTimeout(() => submitFunction(false), 1500);
   };
 
-  // TODO loading button animation
   return (
     <Form noValidate={false}>
       {(function() {
@@ -158,16 +165,32 @@ const Steps = ({ setInvalidStep }) => {
                   <div className="issue-submit__text">
                     We will be back to you once we figured out the solution
                   </div>
-                  <p onClick={handleSubmit}>
-                    {submitting ? 'kj' : 'Send Email'}
-                  </p>
+                  <div
+                    className="issue-submit__button"
+                    onClick={() => handleSubmit(setSubmittingEmail)}
+                  >
+                    {submittingEmail ? (
+                      <MoonLoader sizeUnit={'px'} size={30} color={'#b23b00'} />
+                    ) : (
+                      'Send email'
+                    )}
+                  </div>
                 </div>
                 <div className="issue-submit__banner">
                   <div className="issue-submit__title">Open a ticket</div>
                   <div className="issue-submit__text">
                     Ask our community and get their feedback
                   </div>
-                  <p>{submitting ? 'kj' : 'Open'}</p>
+                  <div
+                    className="issue-submit__button"
+                    onClick={() => handleSubmit(setSubmittingTicket)}
+                  >
+                    {submittingTicket ? (
+                      <MoonLoader sizeUnit={'px'} size={30} color={'#b23b00'} />
+                    ) : (
+                      'Open a ticket'
+                    )}
+                  </div>
                 </div>
               </StyledStep3>
             );
