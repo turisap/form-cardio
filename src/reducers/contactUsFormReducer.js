@@ -16,7 +16,6 @@ const contactUsFormReducer = (state, action) => {
         finishedStep: action.finishedStep
       };
     case 'INVALIDATE_STEP':
-      console.log('invalidate step');
       return {
         ...state,
         finishedStep: state.activeStep === 0 ? 0 : state.activeStep - 1

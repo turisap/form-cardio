@@ -167,7 +167,7 @@ const ContactUsFormContent = props => {
     FormsContext
   );
   const [invalidStep, setInvalidStep] = React.useState(true);
-  const { activeStep, finishedStep } = contactUsFormState;
+  const [issueType, setIssueType] = React.useState('');
 
   // TODO TiICK overlay over finished steps
   return (
@@ -217,7 +217,11 @@ const ContactUsFormContent = props => {
         </div>
       </div>
       <div className="contactus-form__content">
-        <Steps setInvalidStep={setInvalidStep} />
+        <Steps
+          setInvalidStep={setInvalidStep}
+          issueType={issueType}
+          setIssueType={setIssueType}
+        />
       </div>
       <div className="contactus-form__footer">
         {contactUsFormState.activeStep > 1 && (

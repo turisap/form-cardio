@@ -90,8 +90,10 @@ const StyledStep3 = styled.div`
   }
 `;
 
-const Steps = ({ setInvalidStep }) => {
-  const { contactUsFormState } = useContext(FormsContext);
+const Steps = ({ setInvalidStep, setIssueType, issueType }) => {
+  const { contactUsFormState, contactUsFormDispatch } = useContext(
+    FormsContext
+  );
   const [submittingEmail, setSubmittingEmail] = useState(false);
   const [submittingTicket, setSubmittingTicket] = useState(false);
 
@@ -100,6 +102,8 @@ const Steps = ({ setInvalidStep }) => {
       setInvalidStep(true);
       return;
     }
+
+    setIssueType(nextValue);
     setInvalidStep(false);
   };
 
@@ -116,90 +120,87 @@ const Steps = ({ setInvalidStep }) => {
     setTimeout(() => submitFunction(false), 1500);
   };
 
-  return (
-    <Form noValidate={false}>
-      {(function() {
-        switch (/*contactUsFormState.activeStep*/ 3) {
-          case 1:
-            return (
-              <Select
-                name="select issue"
-                label="Please select topic"
-                onChange={selectHandler}
+  const switchSteps = step => {
+    switch (step) {
+      case 1:
+        return (
+          <Select
+            name="select issue"
+            label="Please select topic"
+            onChange={selectHandler}
+            value={issueType}
+          >
+            <option value={'nothing'}>- - - - - - - - - - - -</option>
+            <option value="Get help with your studies">
+              Get help with your studies
+            </option>
+            <option value="Order cookies">Order a cartoon of cookies</option>
+            <option value="Report strange feelings">
+              Report strange feelings
+            </option>
+            <option value="Clarify usage of our API">
+              Clarify usage of our API
+            </option>
+          </Select>
+        );
+      case 2:
+        return (
+          <StyledIssueDescription>
+            <div className="issue-description__title">How can we help?</div>
+            <div className="issue-description__text">
+              We are more than happy to help you to resolve your issue. Please
+              tell us the details about what happened
+            </div>
+            <Textarea
+              name="issue_description"
+              placeholder="Please type description for your issue here (between 20 and 100 characters)"
+              onChange={textAreaChangeHandler}
+            />
+          </StyledIssueDescription>
+        );
+      case 3:
+        return (
+          <StyledStep3>
+            <div className="issue-submit__banner">
+              <div className="issue-submit__title">Email Us</div>
+              <div className="issue-submit__text">
+                We will be back to you once we figured out the solution
+              </div>
+              <div
+                className="issue-submit__button"
+                onClick={() => handleSubmit(setSubmittingEmail)}
               >
-                <option value={'nothing'}>- - - - - - - - - - - -</option>
-                <option value="Get help with your studies">
-                  Get help with your studies
-                </option>
-                <option value="Order cookies">
-                  Order a cartoon of cookies
-                </option>
-                <option value="Report strange feelings">
-                  Report strange feelings
-                </option>
-                <option value="Clarify usage of our API">
-                  Clarify usage of our API
-                </option>
-              </Select>
-            );
-          case 2:
-            return (
-              <StyledIssueDescription>
-                <div className="issue-description__title">How can we help?</div>
-                <div className="issue-description__text">
-                  We are more than happy to help you to resolve your issue.
-                  Please tell us the details about what happened
-                </div>
-                <Textarea
-                  name="issue_description"
-                  placeholder="Please type description for your issue here (between 20 and 100 characters)"
-                  onChange={textAreaChangeHandler}
-                />
-              </StyledIssueDescription>
-            );
-          case 3:
-            return (
-              <StyledStep3>
-                <div className="issue-submit__banner">
-                  <div className="issue-submit__title">Email Us</div>
-                  <div className="issue-submit__text">
-                    We will be back to you once we figured out the solution
-                  </div>
-                  <div
-                    className="issue-submit__button"
-                    onClick={() => handleSubmit(setSubmittingEmail)}
-                  >
-                    {submittingEmail ? (
-                      <MoonLoader sizeUnit={'px'} size={30} color={'#b23b00'} />
-                    ) : (
-                      'Send email'
-                    )}
-                  </div>
-                </div>
-                <div className="issue-submit__banner">
-                  <div className="issue-submit__title">Open a ticket</div>
-                  <div className="issue-submit__text">
-                    Ask our community and get their feedback
-                  </div>
-                  <div
-                    className="issue-submit__button"
-                    onClick={() => handleSubmit(setSubmittingTicket)}
-                  >
-                    {submittingTicket ? (
-                      <MoonLoader sizeUnit={'px'} size={30} color={'#b23b00'} />
-                    ) : (
-                      'Open a ticket'
-                    )}
-                  </div>
-                </div>
-              </StyledStep3>
-            );
-          default:
-            return <p>DEBUG ME</p>;
-        }
-      })()}
-    </Form>
-  );
+                {submittingEmail ? (
+                  <MoonLoader sizeUnit={'px'} size={30} color={'#b23b00'} />
+                ) : (
+                  'Send email'
+                )}
+              </div>
+            </div>
+            <div className="issue-submit__banner">
+              <div className="issue-submit__title">Open a ticket</div>
+              <div className="issue-submit__text">
+                Ask our community and get their feedback
+              </div>
+              <div
+                className="issue-submit__button"
+                onClick={() => handleSubmit(setSubmittingTicket)}
+              >
+                {submittingTicket ? (
+                  <MoonLoader sizeUnit={'px'} size={30} color={'#b23b00'} />
+                ) : (
+                  'Open a ticket'
+                )}
+              </div>
+            </div>
+          </StyledStep3>
+        );
+      default:
+        return <p>DEBUG ME</p>;
+    }
+  };
+
+  return <Form>{switchSteps(contactUsFormState.activeStep)}</Form>;
 };
 
 export default Steps;
