@@ -90,12 +90,11 @@ const StyledStep3 = styled.div`
   }
 `;
 
-const Steps = ({ setInvalidStep, setIssueType, issueType }) => {
-  const { contactUsFormState, contactUsFormDispatch } = useContext(
-    FormsContext
-  );
+const Steps = ({ setInvalidStep, activeStep }) => {
   const [submittingEmail, setSubmittingEmail] = useState(false);
   const [submittingTicket, setSubmittingTicket] = useState(false);
+  const [issueType, setIssueType] = useState('');
+  const [issueDescription, setIssueDescription] = useState('');
 
   const selectHandler = ({ nextValue }) => {
     if (nextValue === 'nothing') {
@@ -112,6 +111,7 @@ const Steps = ({ setInvalidStep, setIssueType, issueType }) => {
       setInvalidStep(false);
       return;
     }
+    setIssueDescription(e.nextValue);
     setInvalidStep(true);
   };
 
@@ -155,6 +155,7 @@ const Steps = ({ setInvalidStep, setIssueType, issueType }) => {
               name="issue_description"
               placeholder="Please type description for your issue here (between 20 and 100 characters)"
               onChange={textAreaChangeHandler}
+              description={issueDescription}
             />
           </StyledIssueDescription>
         );
@@ -196,11 +197,11 @@ const Steps = ({ setInvalidStep, setIssueType, issueType }) => {
           </StyledStep3>
         );
       default:
-        return <p>DEBUG ME</p>;
+        return <p>''</p>;
     }
   };
 
-  return <Form>{switchSteps(contactUsFormState.activeStep)}</Form>;
+  return <Form>{switchSteps(activeStep)}</Form>;
 };
 
 export default Steps;

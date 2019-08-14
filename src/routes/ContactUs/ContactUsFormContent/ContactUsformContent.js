@@ -167,7 +167,7 @@ const ContactUsFormContent = props => {
     FormsContext
   );
   const [invalidStep, setInvalidStep] = React.useState(true);
-  const [issueType, setIssueType] = React.useState('');
+  const [activeStep, setActiveStep] = React.useState(1);
 
   // TODO TiICK overlay over finished steps
   return (
@@ -192,7 +192,7 @@ const ContactUsFormContent = props => {
         <div className="contactus-form__steps--inner">
           <div
             className={cn('contactus-form__step', {
-              checked: contactUsFormState.activeStep >= 1
+              checked: activeStep >= 1
             })}
           >
             <p className="contactus-form__stepnumber">1</p>
@@ -200,7 +200,7 @@ const ContactUsFormContent = props => {
           </div>
           <div
             className={cn('contactus-form__step', {
-              checked: contactUsFormState.activeStep >= 2
+              checked: activeStep >= 2
             })}
           >
             <p className="contactus-form__stepnumber">2</p>
@@ -208,7 +208,7 @@ const ContactUsFormContent = props => {
           </div>
           <div
             className={cn('contactus-form__step', {
-              checked: contactUsFormState.activeStep >= 3
+              checked: activeStep >= 3
             })}
           >
             <p className="contactus-form__stepnumber">3</p>
@@ -217,28 +217,19 @@ const ContactUsFormContent = props => {
         </div>
       </div>
       <div className="contactus-form__content">
-        <Steps
-          setInvalidStep={setInvalidStep}
-          issueType={issueType}
-          setIssueType={setIssueType}
-        />
+        <Steps setInvalidStep={setInvalidStep} activeStep={activeStep} />
       </div>
       <div className="contactus-form__footer">
-        {contactUsFormState.activeStep > 1 && (
-          <button
-            onClick={() =>
-              contactUsFormDispatch({ type: 'DECREMENT_ACTIVE_STEP' })
-            }
-          >
-            Back
-          </button>
+        {activeStep > 1 && (
+          <button onClick={() => setActiveStep(activeStep - 1)}>Back</button>
         )}
-        {contactUsFormState.activeStep < 3 && (
+        {activeStep < 3 && (
           <button
             disabled={invalidStep}
-            onClick={() =>
-              contactUsFormDispatch({ type: 'INCREMENT_ACTIVE_STEP' })
-            }
+            onClick={() => {
+              setActiveStep(activeStep + 1);
+              setInvalidStep(true);
+            }}
           >
             Continue
           </button>

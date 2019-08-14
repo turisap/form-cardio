@@ -15,8 +15,17 @@ class Textarea extends React.Component {
   };
 
   render() {
-    const { fieldProps, fieldState, id, name, className, label } = this.props;
+    const {
+      fieldProps,
+      fieldState,
+      id,
+      name,
+      className,
+      label,
+      description
+    } = this.props;
     const { touched, pristine, valid, invalid, errors } = fieldState;
+    delete fieldProps.value;
 
     const textareaClassNames = [
       'form-control',
@@ -41,6 +50,7 @@ class Textarea extends React.Component {
           id={id || name}
           className={textareaClassNames}
           {...fieldProps}
+          value={description}
         />
 
         {errors &&
