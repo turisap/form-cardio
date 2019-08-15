@@ -160,12 +160,19 @@ const StyledContactForm = styled.div`
           }
         }
      }
+     
+     @media (max-width: 1400px) {
+        & {
+              width: 400px;
+              height: 600px;
+              display: grid;
+              grid-template-rows: 100px calc(100% - 200px) 100px;
+            
+        }
+     }
 `;
 
 const ContactUsFormContent = props => {
-  const { contactUsFormState, contactUsFormDispatch } = React.useContext(
-    FormsContext
-  );
   const [invalidStep, setInvalidStep] = React.useState(true);
   const [activeStep, setActiveStep] = React.useState(1);
 

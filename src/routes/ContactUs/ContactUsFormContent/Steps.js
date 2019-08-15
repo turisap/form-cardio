@@ -38,6 +38,29 @@ const StyledIssueDescription = styled.div`
       outline: none;
     }
   }
+
+  @media (max-width: 1400px) {
+    & {
+      grid-template-rows: 45px 70px 250px;
+    }
+    .issue-description__title {
+      font-size: 26px;
+      font-weight: 500;
+      align-self: end;
+    }
+
+    .issue-description__text {
+      font-size: 18px;
+    }
+
+    .form-group-textarea {
+      grid-template-rows: 170px 50px;
+    }
+
+    textarea {
+      height: 140px;
+    }
+  }
 `;
 
 const StyledStep3 = styled.div`
@@ -107,6 +130,7 @@ const Steps = ({ setInvalidStep, activeStep }) => {
   };
 
   const textAreaChangeHandler = e => {
+    console.log(e);
     if (!e.fieldProps.errors) {
       setInvalidStep(false);
       return;
@@ -201,7 +225,7 @@ const Steps = ({ setInvalidStep, activeStep }) => {
     }
   };
 
-  return <Form>{switchSteps(activeStep)}</Form>;
+  return <Form>{switchSteps(2)}</Form>;
 };
 
 export default Steps;

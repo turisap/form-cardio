@@ -11,9 +11,6 @@ const ContactUsForm = () => {
 
   useEffect(() => {
     const popTimeOut = setTimeout(() => toggleModal(), 200);
-    // return (() => {
-    //   clearTimeout(popTimeOut)
-    // })
   }, []);
 
   return (

@@ -50,7 +50,6 @@ class Textarea extends React.Component {
           id={id || name}
           className={textareaClassNames}
           {...fieldProps}
-          value={description}
         />
 
         {errors &&
