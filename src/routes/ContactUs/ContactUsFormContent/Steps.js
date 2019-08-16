@@ -130,7 +130,6 @@ const Steps = ({ setInvalidStep, activeStep }) => {
   };
 
   const textAreaChangeHandler = e => {
-    console.log(e);
     if (!e.fieldProps.errors) {
       setInvalidStep(false);
       return;
@@ -225,7 +224,7 @@ const Steps = ({ setInvalidStep, activeStep }) => {
     }
   };
 
-  return <Form>{switchSteps(2)}</Form>;
+  return <Form>{switchSteps(activeStep)}</Form>;
 };
 
 export default Steps;
