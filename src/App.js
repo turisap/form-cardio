@@ -18,6 +18,10 @@ const SignUpForm = lazy(() => import('./routes/SignUp/SignUpForm'));
 const ContactUsForm = lazy(() => import('./routes/ContactUs/ContactUsForm'));
 const NotFoundPage = lazy(() => import('./routes/404'));
 
+/* eslint-disable import/first */
+import 'semantic-ui-css/semantic.min.css';
+/* eslint-enable import/first */
+
 // TODO on page load animation like that one on gitlab
 // TODO add loading component
 // TODO add Google Analitics to count visitors

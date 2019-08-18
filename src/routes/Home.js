@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Placeholder } from 'semantic-ui-react';
+import { Placeholder, Dimmer, Segment, Image, Loader } from 'semantic-ui-react';
 
 // TODO add semantic UI placeholder
 
@@ -44,12 +44,13 @@ const HomePage = () => {
         <div className="home-page__what">
           {loading ? (
             <Placeholder>
-              <Placeholder.Header>
-                <Placeholder.Line length="medium" />
+              <Placeholder.Header image>
+                <Placeholder.Line />
+                <Placeholder.Line />
               </Placeholder.Header>
               <Placeholder.Paragraph>
                 <Placeholder.Line length="medium" />
-                <Placeholder.Line length="medium" />
+                <Placeholder.Line length="short" />
               </Placeholder.Paragraph>
             </Placeholder>
           ) : (
