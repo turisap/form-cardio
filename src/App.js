@@ -67,7 +67,7 @@ function App() {
   return (
     <ErrorBoundary>
       <Router>
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={''}>
           <FormContext.Provider
             value={{
               contactUsFormDispatch,

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Placeholder, Dimmer, Segment, Image, Loader } from 'semantic-ui-react';
+import { Placeholder } from 'semantic-ui-react';
 
-// TODO add semantic UI placeholder
+// TODO style stack as in github markdown (check colors, font monospace)
 
 const StyledHomePage = styled.div`
   align-content: start;
@@ -21,36 +21,55 @@ const StyledHomePage = styled.div`
   .home-page__inner {
     margin-top: 80px;
     display: grid;
-    grid-template-rows: 200px 200px 100px;
+    grid-template-rows: 180px 170px 100px;
     grid-template-columns: 500px;
   }
 
   .home-page__contents {
     margin-top: 30px;
   }
+
+  .home-page__stack {
+    li {
+      margin-bottom: 4px;
+    }
+  }
+
+  .home-page__stackelement {
+    padding: 1px 5px;
+    background: grey;
+    color: black;
+    border-radius: 5px;
+    display: inline;
+  }
 `;
 
 const HomePage = () => {
-  const [loading, setLoading] = useState(true);
+  let [loadingSequence, setLoadingSequence] = useState(0);
+
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 15000);
+    let loadingInterval = setInterval(() => {
+      setLoadingSequence(loadingSequence++);
+    }, 100);
+
+    return () => clearInterval(loadingInterval);
   }, []);
 
   return (
     <StyledHomePage className="container">
       <div className="home-page__inner">
         <div className="home-page__what">
-          {loading ? (
+          {loadingSequence < 2 ? (
             <Placeholder>
-              <Placeholder.Header image>
-                <Placeholder.Line />
-                <Placeholder.Line />
+              <Placeholder.Header>
+                <Placeholder.Line length="medium" />
               </Placeholder.Header>
               <Placeholder.Paragraph>
-                <Placeholder.Line length="medium" />
-                <Placeholder.Line length="short" />
+                <Placeholder.Line length="very long" />
+                <Placeholder.Line length="very long" />
+                <Placeholder.Line length="very long" />
+                <Placeholder.Line length="very long" />
+                <Placeholder.Line length="very long" />
               </Placeholder.Paragraph>
             </Placeholder>
           ) : (
@@ -70,19 +89,60 @@ const HomePage = () => {
           )}
         </div>
         <div className="home-page__stack">
-          <h2>Stack being used:</h2>
-          <ul>
-            <li className="home-page__stack">Create-react-app</li>
-            <li className="home-page__stack">styled-components</li>
-            <li className="home-page__stack">react-advanced-form</li>
-          </ul>
+          {loadingSequence < 5 ? (
+            <Placeholder>
+              <Placeholder.Header>
+                <Placeholder.Line length="medium" />
+              </Placeholder.Header>
+              <Placeholder.Paragraph>
+                <Placeholder.Line length="short" />
+                <Placeholder.Line length="short" />
+                <Placeholder.Line length="short" />
+                <Placeholder.Line length="short" />
+              </Placeholder.Paragraph>
+            </Placeholder>
+          ) : (
+            <>
+              <h2>Stack being used:</h2>
+              <ul>
+                <li>
+                  <p className="home-page__stackelement">create-react-app</p>
+                </li>
+                <li>
+                  <p className="home-page__stackelement">styled-components</p>
+                </li>
+                <li>
+                  <p className="home-page__stackelement">react-advanced-form</p>
+                </li>
+                <li>
+                  <p className="home-page__stackelement">semantic-ui-react</p>
+                </li>
+              </ul>
+            </>
+          )}
         </div>
         <div className="home-page__features">
-          <h2>New things tried:</h2>
-          <ul>
-            <li>React Hooks</li>
-            <li>React Portals</li>
-          </ul>
+          {loadingSequence < 7 ? (
+            <Placeholder>
+              <Placeholder.Header>
+                <Placeholder.Line length="medium" />
+              </Placeholder.Header>
+              <Placeholder.Paragraph>
+                <Placeholder.Line length="short" />
+                <Placeholder.Line length="short" />
+                <Placeholder.Line length="short" />
+                <Placeholder.Line length="short" />
+              </Placeholder.Paragraph>
+            </Placeholder>
+          ) : (
+            <>
+              <h2>New things tried:</h2>
+              <ul>
+                <li>React Hooks</li>
+                <li>React Portals</li>
+              </ul>
+            </>
+          )}
         </div>
       </div>
     </StyledHomePage>
