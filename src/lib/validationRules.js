@@ -14,7 +14,7 @@ const validationRules = {
     },
     email: {
       isValid: ({ value }) =>
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)
+        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value)
     }
   },
 
@@ -34,6 +34,10 @@ const validationRules = {
       matches: ({ value, get }) => {
         return value === get(['signup_password', 'value']);
       }
+    },
+    issue_description: {
+      minLength: ({ value }) => value.length > 20,
+      maxLength: ({ value }) => value.length <= 100
     }
   }
 };
