@@ -22,15 +22,10 @@ const NotFoundPage = lazy(() => import('./routes/404'));
 import 'semantic-ui-css/semantic.min.css';
 /* eslint-enable import/first */
 
-// TODO on page load animation like that one on gitlab
-// TODO add loading component
 // TODO add Google Analitics to count visitors
 // TODO try-catch in event listeners
 
 // TODO MUST DO ALL TESTS STRAIGHT AFTER CREATING A FORM
-
-// TODO REACT CONTEXT TO BE ADDED
-// TODO USE CUSTOM HOOKS
 
 const routes = [
   {

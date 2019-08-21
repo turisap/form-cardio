@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Placeholder } from 'semantic-ui-react';
 
-// TODO style stack as in github markdown (check colors, font monospace)
-
 const StyledHomePage = styled.div`
   align-content: start;
 
@@ -21,13 +19,14 @@ const StyledHomePage = styled.div`
   .home-page__inner {
     margin-top: 80px;
     display: grid;
-    grid-template-rows: 180px 190px 100px;
+    grid-template-rows: 180px 210px 100px;
     grid-template-columns: 500px;
   }
 
   .home-page__section {
     display: grid;
     align-content: center;
+    height: 100%;
   }
 
   .home-page__contents {
@@ -36,14 +35,17 @@ const StyledHomePage = styled.div`
 
   .home-page__stack {
     li {
-      margin-bottom: 4px;
+      margin-bottom: 7px;
     }
   }
 
   .home-page__stackelement {
-    padding: 1px 5px;
-    background: grey;
-    color: black;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 2px 3px;
+    background: rgba(27, 31, 35, 0.05);
+    color: #24292e;
     border-radius: 5px;
     display: inline;
   }
@@ -122,7 +124,7 @@ const HomePage = () => {
                   <li>
                     <p>
                       <span className="home-page__stackelement">
-                        tyled-components
+                        styled-components
                       </span>{' '}
                       for styling
                     </p>
