@@ -8,11 +8,12 @@ import Textarea from '../../../base/inputs/TextArea';
 const StyledIssueDescription = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 45px 55px 250px;
+  grid-template-rows: 55px 55px 250px;
 
   .issue-description__title {
-    font-size: 45px;
+    font-size: 35px;
     font-weight: 500;
+    line-height: 55px;
   }
 
   .issue-description__text {
@@ -43,7 +44,7 @@ const StyledIssueDescription = styled.div`
       grid-template-rows: 45px 70px 250px;
     }
     .issue-description__title {
-      font-size: 26px;
+      font-size: 25px;
       font-weight: 500;
       align-self: end;
     }
@@ -139,11 +140,11 @@ const Steps = ({ setInvalidStep, activeStep }) => {
 
   const handleSubmit = submitFunction => {
     submitFunction(true);
-    setTimeout(() => submitFunction(false), 15000);
+    setTimeout(() => submitFunction(false), 3000);
   };
 
   const switchSteps = step => {
-    switch (3) {
+    switch (step) {
       case 1:
         return (
           <Select
