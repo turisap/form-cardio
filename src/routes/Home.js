@@ -124,6 +124,13 @@ const HomePage = () => {
                   <li>
                     <p>
                       <span className="home-page__stackelement">
+                        flow ???????????????????
+                      </span>
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      <span className="home-page__stackelement">
                         styled-components
                       </span>{' '}
                       for styling

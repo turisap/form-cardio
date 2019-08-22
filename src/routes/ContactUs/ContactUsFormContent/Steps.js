@@ -1,9 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-advanced-form';
 import Select from '../../../base/inputs/Select';
 import styled from 'styled-components';
-import { MoonLoader } from 'react-spinners';
-import FormsContext from '../../../context/formcontext';
+import { ClipLoader } from 'react-spinners';
 import Textarea from '../../../base/inputs/TextArea';
 
 const StyledIssueDescription = styled.div`
@@ -140,11 +139,11 @@ const Steps = ({ setInvalidStep, activeStep }) => {
 
   const handleSubmit = submitFunction => {
     submitFunction(true);
-    setTimeout(() => submitFunction(false), 1500);
+    setTimeout(() => submitFunction(false), 15000);
   };
 
   const switchSteps = step => {
-    switch (step) {
+    switch (3) {
       case 1:
         return (
           <Select
@@ -195,7 +194,7 @@ const Steps = ({ setInvalidStep, activeStep }) => {
                 onClick={() => handleSubmit(setSubmittingEmail)}
               >
                 {submittingEmail ? (
-                  <MoonLoader sizeUnit={'px'} size={30} color={'#b23b00'} />
+                  <ClipLoader sizeUnit={'px'} size={25} color={'#b23b00'} />
                 ) : (
                   'Send email'
                 )}
@@ -211,7 +210,7 @@ const Steps = ({ setInvalidStep, activeStep }) => {
                 onClick={() => handleSubmit(setSubmittingTicket)}
               >
                 {submittingTicket ? (
-                  <MoonLoader sizeUnit={'px'} size={30} color={'#b23b00'} />
+                  <ClipLoader sizeUnit={'px'} size={25} color={'#b23b00'} />
                 ) : (
                   'Open a ticket'
                 )}
