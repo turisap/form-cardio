@@ -23,5 +23,7 @@ export const theme = {
   text_on_dark_hover: lighten(0.15, '#999'),
   text_on_red: '#c6c6c6',
   text_orange: '#b23b00',
-  text_on_white: '#959595'
+  text_on_white: '#959595',
+  text_blue: '#6266FF',
+  text_blue_hover: darken(0.2, '#6266FF')
 };

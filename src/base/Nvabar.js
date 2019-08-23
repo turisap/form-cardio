@@ -11,7 +11,7 @@ const StyledNav = styled.nav`
     padding: 0;
     height: 50px;
     display: grid;
-    grid-template-columns: repeat(5, 120px);
+    grid-template-columns: repeat(4, 120px);
     background: ${props => props.theme.dark_background};
   }
 
@@ -55,6 +55,11 @@ const NavBar = () => {
         <li>
           <NavLink to="/contact-us" activeClassName="navlink--active">
             Contact us
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/invoice" activeClassName="navlink--active">
+            Invoice
           </NavLink>
         </li>
       </ul>
