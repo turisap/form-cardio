@@ -9,6 +9,7 @@ export const theme = {
   border_sound_step_circle: '1px solid #c6c6c6',
   border_offwhite: '1px solid #ffffff',
   border_orange: '1px solid #ff5500',
+  border_dashed_grey: '1px dashed #E2E2E2',
 
   // COLORS
   offwhite_background: '#ffffff',

@@ -23,7 +23,8 @@ import 'semantic-ui-css/semantic.min.css';
 
 // TODO add Google Analitics to count visitors
 // TODO MUST DO ALL TESTS STRAIGHT AFTER CREATING A FORM
-
+// TODO add PropTypes to all components
+// TODO add default props to all components
 const routes = [
   {
     path: '/',

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Form } from 'react-advanced-form';
 import Select from 'base/inputs/Select';
+import Items from './Items';
 
 const StyledInvoiceForm = styled.div`
    width: 99vw;
@@ -48,7 +49,7 @@ const StyledInvoiceForm = styled.div`
      margin: 0 auto;
      display: grid;
      grid-template-columns: 1fr;
-     grid-template-rows: 120px 350px 295px 150px
+     grid-template-rows: 100px 350px 295px 150px
    }
    
    .invoice-header {
@@ -85,6 +86,7 @@ const StyledInvoiceForm = styled.div`
       grid-template-columns: 2fr 0.5fr 0.7fr 0.7fr;
       grid-gap: 20px;
       padding-left: 40px;
+      border-bottom: ${props => props.theme.border_dashed_grey};
    }
    
    .invoice-details__bill {
@@ -168,6 +170,7 @@ const InvoiceFormContent = props => {
             </div>
           </div>
         </div>
+        <Items />
       </StyledInvoiceForm>
     </Form>
   );
