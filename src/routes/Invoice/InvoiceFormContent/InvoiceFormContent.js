@@ -151,22 +151,24 @@ const InvoiceFormContent = props => {
           </div>
           <div className="invoice-details">
             <div className="invoice-details__bill">
-              <Select label="Bill from">
+              <Select label="Bill from" name="bill_from">
+                <option>lsdk</option>
                 <option>lsdk</option>
               </Select>
-              <Select label="Bill to">
+              <Select label="Bill to" name="bill_to">
+                <option>lsdk</option>
                 <option>lsdk</option>
               </Select>
               <p className="invoice-details__card">SAMPLE OF ADRESS</p>
             </div>
             <div className="invoice-details__details1">
               <h2>Invoice details</h2>
-              <Select label="Invoice date" />
-              <Select label="Invoice number" />
+              <Select label="Invoice date" name="invoice_date" />
+              <Select label="Invoice number" name="invoice_number" />
             </div>
             <div className="invoice-details__details2">
-              <Select label="Currency" />
-              <Select label="Payment due date" />
+              <Select label="Currency" name="currency" />
+              <Select label="Payment due date" name="payment_date" />
             </div>
           </div>
         </div>

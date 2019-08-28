@@ -219,6 +219,7 @@ const ContactUsFormContent = props => {
               <p className={cn('number', { checked: activeStep >= 2 })}>1</p>
               <img
                 className={cn('overlay', { checked: activeStep >= 2 })}
+                alt="overlay"
                 src={CheckedIcon}
               />
             </p>
@@ -233,6 +234,7 @@ const ContactUsFormContent = props => {
               <p className={cn('number', { checked: activeStep >= 3 })}>2</p>
               <img
                 className={cn('overlay', { checked: activeStep >= 3 })}
+                alt="overlay"
                 src={CheckedIcon}
               />
             </p>
@@ -247,6 +249,7 @@ const ContactUsFormContent = props => {
               <p className={cn('number', { checked: activeStep >= 3 })}>3</p>
               <img
                 className={cn('overlay', { checked: activeStep >= 3 })}
+                alt="overlay"
                 src={CheckedIcon}
               />
             </p>
