@@ -171,8 +171,8 @@ const InvoiceFormContent = props => {
               <Select label="Payment due date" name="payment_date" />
             </div>
           </div>
+          <Items />
         </div>
-        <Items />
       </StyledInvoiceForm>
     </Form>
   );
