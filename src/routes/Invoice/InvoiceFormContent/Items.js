@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import faker from 'faker';
 import _ from 'lodash';
 import styled from 'styled-components';
+import Item from './Item';
 
 const StyledItems = styled.div`
   display:grid;
@@ -11,12 +12,14 @@ const StyledItems = styled.div`
   padding-left: 40px;
   margin-top: 30px;
   
+  .items__table-head, .items__table-content {
+    border: ${props => props.theme.grey_border}
+    background: ${props => props.theme.grey_background}
+  }
+  
   .items__table-head {
     display:grid;
     grid-template-columns: repeat(6, 1fr);
-    border: ${props => props.theme.grey_border}
-    background: ${props => props.theme.grey_background}
-    
     p {
       margin: 0;
       padding: 0;
@@ -24,12 +27,13 @@ const StyledItems = styled.div`
       line-height: 50px;
       border-right: ${props => props.theme.grey_border}
     }
-    
-    &:[last-child] {background:red}
+   
+   p:last-child {
+      border-right: none;
+   } 
   }
 `;
 
-// TODO fix last child border
 const Items = props => {
   return (
     <StyledItems>
@@ -41,11 +45,9 @@ const Items = props => {
         <p className="items__table-header">TAX</p>
         <p className="items__table-header">NET AMOUNT</p>
       </div>
-      <div className="items__table-content">
-        {props.items.map(item => (
-          <p>{item.product}</p>
-        ))}
-      </div>
+      {props.items.map(item => (
+        <Item key={item.id} item={item} />
+      ))}
     </StyledItems>
   );
 };
@@ -58,6 +60,7 @@ Items.propTypes = {};
 
 function getRandomItems(number) {
   return _.times(number, () => ({
+    id: faker.random.uuid(),
     product: getRandomProducts(1),
     unitPrice: `$${faker.commerce.price()}`,
     quantity: faker.finance.amount(),

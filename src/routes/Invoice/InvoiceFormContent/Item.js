@@ -1,12 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import faker from 'faker';
+import styled from 'styled-components';
+
+const StyledItem = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background: ${props => props.theme.grey_background} p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 50px;
+    border-right: ${props => props.theme.grey_border};
+    border-bottom: ${props => props.theme.grey_border};
+  }
+
+  p:last-child {
+    border-right: none;
+  }
+`;
 
 const Item = props => {
+  const {
+    product,
+    unitPrice,
+    quantity,
+    tax,
+    purchaseOrder,
+    description,
+    code,
+    deliveryNumber
+  } = props.item;
   return (
-    <>
-      <p>{props.item.product}</p>
-    </>
+    <StyledItem>
+      <p className="item__element">{product}</p>
+      <p className="item__element">{unitPrice}</p>
+      <p className="item__element">{quantity}</p>
+      <p className="item__element">{tax}</p>
+      <p className="item__element">{purchaseOrder}</p>
+      <p className="item__element">{description}</p>
+      <p className="item__element">{code}</p>
+      <p className="item__element">{deliveryNumber}</p>
+    </StyledItem>
   );
 };
 
@@ -22,3 +56,5 @@ Item.propTypes = {
     deliveryNumber: PropTypes.string.isRequired
   })
 };
+
+export { Item as default };
