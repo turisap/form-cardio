@@ -7,6 +7,8 @@ import Item from './Item';
 
 const StyledItems = styled.div`
   display:grid;
+  height: 300px;
+  overflow-y: scroll;
   grid-template-rows: 50px 1fr;
   grid-template-columns: 1fr;
   padding-left: 40px;
@@ -19,7 +21,7 @@ const StyledItems = styled.div`
   
   .items__table-head {
     display:grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns:30px repeat(5, 1fr);
     p {
       margin: 0;
       padding: 0;
@@ -43,10 +45,10 @@ const Items = props => {
         <p className="items__table-header">UNIT PRICE</p>
         <p className="items__table-header">QUANTITY</p>
         <p className="items__table-header">TAX</p>
-        <p className="items__table-header">NET AMOUNT</p>
+        <p className="items__table-header">CODE</p>
       </div>
-      {props.items.map(item => (
-        <Item key={item.id} item={item} />
+      {props.items.map((item, i) => (
+        <Item key={item.id} item={item} number={i} />
       ))}
     </StyledItems>
   );

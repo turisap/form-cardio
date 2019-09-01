@@ -33,9 +33,43 @@ const Input = props => {
   );
 };
 
+const ContainedInput = props => {
+  /**
+   * "fieldProps" need to be mapped to the field element.
+   * "fieldState" contains the current state of a field.
+   */
+  const { fieldProps, fieldState, label } = props;
+  const { errors } = fieldState;
+
+  return (
+    <div className="form-control">
+      {label && (
+        <label className="form-control-label" htmlFor={null || fieldProps.name}>
+          {label}
+        </label>
+      )}
+      {/* Propagating "fieldProps" is crucial to register a field */}
+      <div className="input-content">
+        <input {...fieldProps} />
+
+        {/* Render input errors underneath */}
+        {errors &&
+          errors.map(error => (
+            <div className="formError" key={error}>
+              {error}
+            </div>
+          ))}
+      </div>
+    </div>
+  );
+};
+
 Input.propTypes = {
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired
 };
 
+const ContainedInputField = createField(fieldPresets.input)(ContainedInput);
+
 export default createField(fieldPresets.input)(Input);
+export { ContainedInputField };
