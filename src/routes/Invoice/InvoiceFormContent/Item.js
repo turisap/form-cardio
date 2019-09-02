@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import cn from 'classnames';
 import { ContainedInputField as Input } from 'base/inputs/Input';
 
 const StyledItem = styled.div`
@@ -19,7 +20,11 @@ const StyledItem = styled.div`
 
   .item-info {
     display: grid;
-    grid-template-rows: 50px 100px;
+    grid-template-rows: 50px 0px;
+  }
+
+  .item-info.active {
+    grid-template-rows: 50px 80px;
   }
 
   .item-info__collapsed {
@@ -41,8 +46,18 @@ const StyledItem = styled.div`
     grid-template-columns: repeat(3, 300px);
     grid-gap: 30px;
     background: ${props => props.theme.grey_background};
-    padding: 10px 30px;
+    padding: 0px 30px;
     border-top: ${props => props.theme.grey_border};
+    max-height: 0px;
+    overflow: hidden;
+  }
+
+  .item-info__expanded.active {
+    max-height: 80px;
+    overflow: hidden;
+  }
+
+  .item-info__expanded.active {
   }
 
   .item__element {
@@ -89,11 +104,17 @@ const Item = props => {
     code,
     deliveryNumber
   } = props.item;
+
+  const [active, setActive] = React.useState(false);
+  function togglePanel() {
+    setActive(!active);
+  }
+
   return (
     <StyledItem>
       <div className="item__container">
         <p className="item__number">{props.number + 1}</p>
-        <div className="item-info">
+        <div className={cn('item-info', { active })} onClick={togglePanel}>
           <div className="item-info__collapsed">
             <p className="item__element">{product}</p>
             <p className="item__element">{unitPrice}</p>
@@ -101,7 +122,7 @@ const Item = props => {
             <p className="item__element">{tax}</p>
             <p className="item__element">{code}</p>
           </div>
-          <div className="item-info__expanded">
+          <div className={cn('item-info__expanded', { active })}>
             <Input
               className="item__element"
               value={purchaseOrder}

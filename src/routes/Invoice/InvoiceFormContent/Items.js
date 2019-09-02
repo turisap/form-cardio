@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import faker from 'faker';
 import _ from 'lodash';
 import styled from 'styled-components';
@@ -7,12 +6,14 @@ import Item from './Item';
 
 const StyledItems = styled.div`
   display:grid;
-  height: 300px;
+  max-height 200px;
   overflow-y: scroll;
   grid-template-rows: 50px 1fr;
   grid-template-columns: 1fr;
-  padding-left: 40px;
+  margin-left: 40px;
   margin-top: 30px;
+  padding: 10px;
+  //border: ${props => props.theme.grey_border}
   
   .items__table-head, .items__table-content {
     border: ${props => props.theme.grey_border}
@@ -55,7 +56,7 @@ const Items = props => {
 };
 
 Items.defaultProps = {
-  items: getRandomItems(3)
+  items: getRandomItems(5)
 };
 
 Items.propTypes = {};
