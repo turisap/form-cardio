@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import cn from 'classnames';
-import { ContainedInputField as Input } from 'base/inputs/Input';
+import { Form } from 'react-advanced-form';
+import { ContainedInput as Input } from 'base/inputs/Input';
 
 const StyledItem = styled.div`
   .item__container {
@@ -106,41 +107,46 @@ const Item = props => {
   } = props.item;
 
   const [active, setActive] = React.useState(false);
-  function togglePanel() {
+  function togglePanel(e) {
     setActive(!active);
   }
 
   return (
     <StyledItem>
-      <div className="item__container">
-        <p className="item__number">{props.number + 1}</p>
-        <div className={cn('item-info', { active })} onClick={togglePanel}>
-          <div className="item-info__collapsed">
-            <p className="item__element">{product}</p>
-            <p className="item__element">{unitPrice}</p>
-            <p className="item__element">{quantity}</p>
-            <p className="item__element">{tax}</p>
-            <p className="item__element">{code}</p>
-          </div>
-          <div className={cn('item-info__expanded', { active })}>
-            <Input
-              className="item__element"
-              value={purchaseOrder}
-              label="Purchase Order"
-            />
-            <Input
-              className="item__element"
-              value={description}
-              label="Description"
-            />
-            <Input
-              className="item__element"
-              value={deliveryNumber}
-              label="Delivery Number"
-            />
+      <Form>
+        <div className="item__container">
+          <p className="item__number">{props.number + 1}</p>
+          <div className={cn('item-info', { active })} onClick={togglePanel}>
+            <div className="item-info__collapsed">
+              <p className="item__element">{product}</p>
+              <p className="item__element">{unitPrice}</p>
+              <p className="item__element">{quantity}</p>
+              <p className="item__element">{tax}</p>
+              <p className="item__element">{code}</p>
+            </div>
+            <div
+              className={cn('item-info__expanded', { active })}
+              onClick={e => e.stopPropagation()}
+            >
+              <Input
+                className="item__element"
+                defaultValue={purchaseOrder}
+                label="Purchase Order"
+              />
+              <Input
+                className="item__element"
+                defaultValue={description}
+                label="Description"
+              />
+              <Input
+                className="item__element"
+                defaultValue={deliveryNumber}
+                label="Delivery Number"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </Form>
     </StyledItem>
   );
 };

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Form } from 'react-advanced-form';
 import Select from 'base/inputs/Select';
 import Items from './Items';
+import faker from 'faker';
 
 const StyledInvoiceForm = styled.div`
    width: 99vw;
@@ -49,7 +50,7 @@ const StyledInvoiceForm = styled.div`
      margin: 0 auto;
      display: grid;
      grid-template-columns: 1fr;
-     grid-template-rows: 100px 350px 295px 150px
+     grid-template-rows: 100px 370px 295px 50px
    }
    
    .invoice-header {
@@ -92,12 +93,26 @@ const StyledInvoiceForm = styled.div`
    .invoice-details__bill {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(3, 120px);
+        grid-template-rows: repeat(2, 120px) 120;
       
       .invoice-details__card {
         width: 100%;
-        height: 90px;
+        height: 150px;
         background: #ECECEC;
+        padding: 0px 50px;
+        display: grid;
+        grid-template-rows: 40px 25px 25px;
+        align-content: center;
+        
+        p {
+          margin-bottom: 5px;
+          font-weight: 300;
+        }
+        
+        p:first-child {
+          margin-bottom: 15px;
+          font-weight: 700;
+        }
       }
    }
    
@@ -126,9 +141,7 @@ const StyledInvoiceForm = styled.div`
    }
 `;
 
-// TODO set up reducer for this form
-// TODO Faker for addresses and others
-const InvoiceFormContent = props => {
+const InvoiceFormContent = () => {
   return (
     <Form>
       <StyledInvoiceForm>
@@ -159,7 +172,16 @@ const InvoiceFormContent = props => {
                 <option>lsdk</option>
                 <option>lsdk</option>
               </Select>
-              <p className="invoice-details__card">SAMPLE OF ADRESS</p>
+              <div className="invoice-details__card">
+                <p>{faker.company.companyName()}</p>
+                <p>
+                  {faker.address.country()} {faker.address.city()}
+                </p>
+                <p>
+                  {faker.address.streetName()} {faker.address.streetAddress()}{' '}
+                  {faker.address.zipCode()} {faker.phone.phoneNumber()}
+                </p>
+              </div>
             </div>
             <div className="invoice-details__details1">
               <h2>Invoice details</h2>

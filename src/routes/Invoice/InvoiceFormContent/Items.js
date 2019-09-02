@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import faker from 'faker';
 import _ from 'lodash';
 import styled from 'styled-components';
 import Item from './Item';
 
 const StyledItems = styled.div`
-  display:grid;
-  max-height 200px;
-  overflow-y: scroll;
-  grid-template-rows: 50px 1fr;
-  grid-template-columns: 1fr;
-  margin-left: 40px;
-  margin-top: 30px;
-  padding: 10px;
-  //border: ${props => props.theme.grey_border}
+  .items__inner {
+    display:grid;
+    max-height 250px;
+    overflow-y: scroll;
+    grid-template-rows: 50px 1fr;
+    grid-template-columns: 1fr;
+    margin-left: 40px;
+    margin-top: 30px;
+    padding: 10px;
+  }
   
   .items__table-head, .items__table-content {
     border: ${props => props.theme.grey_border}
@@ -37,21 +38,27 @@ const StyledItems = styled.div`
   }
 `;
 
-const Items = props => {
+const Items = () => {
+  const [items, setItems] = useState(getRandomItems(7));
+
   return (
-    <StyledItems>
-      <div className="items__table-head">
-        <p className="items__table-header">#</p>
-        <p className="items__table-header">ITEM TYPE</p>
-        <p className="items__table-header">UNIT PRICE</p>
-        <p className="items__table-header">QUANTITY</p>
-        <p className="items__table-header">TAX</p>
-        <p className="items__table-header">CODE</p>
-      </div>
-      {props.items.map((item, i) => (
-        <Item key={item.id} item={item} number={i} />
-      ))}
-    </StyledItems>
+    <>
+      <StyledItems>
+        <div className="items__inner">
+          <div className="items__table-head">
+            <p className="items__table-header">#</p>
+            <p className="items__table-header">ITEM TYPE</p>
+            <p className="items__table-header">UNIT PRICE</p>
+            <p className="items__table-header">QUANTITY</p>
+            <p className="items__table-header">TAX</p>
+            <p className="items__table-header">CODE</p>
+          </div>
+          {items.map((item, i) => (
+            <Item key={item.id} item={item} number={i} />
+          ))}
+        </div>
+      </StyledItems>
+    </>
   );
 };
 

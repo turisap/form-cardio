@@ -31,6 +31,9 @@ const StyledHomePage = styled.div`
 
   .home-page__contents {
     margin-top: 30px;
+    p:last-child {
+      color: red;
+    }
   }
 
   .home-page__stack {
@@ -91,6 +94,10 @@ const HomePage = () => {
                     It was inspired after struggling with the forms in previous
                     application
                   </p>
+                  <p>
+                    This project hasn't been optimised for smaller screens and
+                    mobile devices yet
+                  </p>
                 </div>
               </>
             )}
@@ -121,13 +128,7 @@ const HomePage = () => {
                       </span>
                     </p>
                   </li>
-                  <li>
-                    <p>
-                      <span className="home-page__stackelement">
-                        flow ???????????????????
-                      </span>
-                    </p>
-                  </li>
+
                   <li>
                     <p>
                       <span className="home-page__stackelement">
