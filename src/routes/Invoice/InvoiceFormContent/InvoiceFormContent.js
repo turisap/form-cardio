@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Form } from 'react-advanced-form';
-import Select from 'base/inputs/Select';
-import Items from './Items';
 import faker from 'faker';
+import SemanticDatepicker from 'react-semantic-ui-datepickers';
+import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
+import _ from 'lodash';
+import Select from 'base/inputs/Select';
+import { ContainedInput as Input } from '../../../base/inputs/Input';
+import Items from './Items';
 
 const StyledInvoiceForm = styled.div`
    width: 99vw;
@@ -11,19 +15,19 @@ const StyledInvoiceForm = styled.div`
    background: ${props => props.theme.offwhite_background};
    border: 1px solid #8D8D8D;
    
-   .form-group {
+   .form-group, .form-control {
         display:grid;
-        grid-template-rows: 40px 54px;
+        grid-template-rows: 25px 40px;
         
         label {
           align-self: start;
           color : black;
-          margin-bottom: 10px;
+          margin-bottom: 0px;
           font-weight: 700;
           font-size: 18px;
         }
         
-        select {
+        select, input {
           background: transparent;
           cursor: pointer;
           -webkit-appearance: none;
@@ -135,9 +139,24 @@ const StyledInvoiceForm = styled.div`
           color: #5F5F5F;
         }
         
+         .input-content input {
+          height: 38px;
+          width: 230px;
+        }
+        
+        
         .form-group {
             grid-template-rows: 25px 40px;
         }
+   }
+   
+   .ui.icon.input input {
+      border-radius: 0;
+      width: 230px;
+   }
+   
+   .ui.icon.input {
+      margin-top: 7px;
    }
 `;
 
@@ -165,12 +184,16 @@ const InvoiceFormContent = () => {
           <div className="invoice-details">
             <div className="invoice-details__bill">
               <Select label="Bill from" name="bill_from">
-                <option>lsdk</option>
-                <option>lsdk</option>
+                <option>{faker.company.companyName()}</option>
+                <option>{faker.company.companyName()}</option>
+                <option>{faker.company.companyName()}</option>
+                <option>{faker.company.companyName()}</option>
               </Select>
               <Select label="Bill to" name="bill_to">
-                <option>lsdk</option>
-                <option>lsdk</option>
+                <option>{faker.company.companyName()}</option>
+                <option>{faker.company.companyName()}</option>
+                <option>{faker.company.companyName()}</option>
+                <option>{faker.company.companyName()}</option>
               </Select>
               <div className="invoice-details__card">
                 <p>{faker.company.companyName()}</p>
@@ -185,12 +208,26 @@ const InvoiceFormContent = () => {
             </div>
             <div className="invoice-details__details1">
               <h2>Invoice details</h2>
-              <Select label="Invoice date" name="invoice_date" />
-              <Select label="Invoice number" name="invoice_number" />
+              <SemanticDatepicker
+                onDateChange={() => {}}
+                label="Invoice date"
+              />
+              <SemanticDatepicker
+                onDateChange={() => {}}
+                label="Payment due date"
+              />
             </div>
             <div className="invoice-details__details2">
-              <Select label="Currency" name="currency" />
-              <Select label="Payment due date" name="payment_date" />
+              <Select label="Currency" name="currency">
+                {_.times(10, () => (
+                  <option>{faker.finance.currencyName()}</option>
+                ))}
+              </Select>
+              <Input
+                label="Invoice number"
+                name="invoice_number"
+                defaultValue="IN-000-435"
+              />
             </div>
           </div>
           <Items />
