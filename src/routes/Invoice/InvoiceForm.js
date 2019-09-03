@@ -12,9 +12,11 @@ const ContactUsForm = () => {
   }, []);
 
   return (
-    <Modal>
-      <InvoiceFormContent />
-    </Modal>
+    modalOpen && (
+      <Modal>
+        <InvoiceFormContent closeHandler={() => setModal(false)} />
+      </Modal>
+    )
   );
 };
 

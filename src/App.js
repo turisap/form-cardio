@@ -3,6 +3,7 @@ import React, { Suspense, lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { FormProvider } from 'react-advanced-form';
 import ErrorBoundary from 'base/ErrorBoundary';
+import ReactGA from 'react-ga';
 import Nprogress from 'base/Nprogress';
 import { theme } from './styles/theme';
 import validationMessages from './lib/validationMessages';
@@ -21,10 +22,6 @@ const NotFoundPage = lazy(() => import('./routes/404'));
 import 'semantic-ui-css/semantic.min.css';
 /* eslint-enable import/first */
 
-// TODO add Google Analitics to count visitors
-// TODO MUST DO ALL TESTS STRAIGHT AFTER CREATING A FORM
-// TODO add PropTypes to all components
-// TODO add default props to all components
 const routes = [
   {
     path: '/',
@@ -52,6 +49,9 @@ const routes = [
     title: 'not found'
   }
 ];
+
+ReactGA.initialize('UA-146938892-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   const [contactUsFormState, contactUsFormDispatch] = React.useReducer(

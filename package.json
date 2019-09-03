@@ -16,6 +16,7 @@
     "react": "^16.8.6",
     "react-advanced-form": "^1.7.2",
     "react-dom": "^16.8.6",
+    "react-ga": "^2.6.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-semantic-ui-datepickers": "^1.11.0",

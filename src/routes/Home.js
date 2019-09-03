@@ -19,7 +19,7 @@ const StyledHomePage = styled.div`
   .home-page__inner {
     margin-top: 80px;
     display: grid;
-    grid-template-rows: 180px 210px 100px;
+    grid-template-rows: 240px 230px 130px;
     grid-template-columns: 500px;
   }
 
@@ -55,14 +55,14 @@ const StyledHomePage = styled.div`
 `;
 
 const HomePage = () => {
-  let [loadingSequence, setLoadingSequence] = useState(0);
+  let [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let loadingInterval = setInterval(() => {
-      setLoadingSequence(loadingSequence++);
-    }, 100);
+    let loadingTimeOut = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
 
-    return () => clearInterval(loadingInterval);
+    return () => clearTimeout(loadingTimeOut);
   }, []);
 
   return (
@@ -70,16 +70,17 @@ const HomePage = () => {
       <div className="home-page__inner">
         <div className="home-page__what">
           <div className="home-page__section">
-            {loadingSequence < 4 ? (
+            {loading ? (
               <Placeholder>
                 <Placeholder.Header>
                   <Placeholder.Line length="medium" />
                 </Placeholder.Header>
                 <Placeholder.Paragraph>
-                  <Placeholder.Line length="very long" />
-                  <Placeholder.Line length="very long" />
-                  <Placeholder.Line length="very long" />
-                  <Placeholder.Line length="very long" />
+                  <Placeholder.Line length="full" />
+                  <Placeholder.Line length="full" />
+                  <Placeholder.Line length="full" />
+                  <Placeholder.Line length="full" />
+                  <Placeholder.Line length="full" />
                 </Placeholder.Paragraph>
               </Placeholder>
             ) : (
@@ -105,12 +106,13 @@ const HomePage = () => {
         </div>
         <div className="home-page__stack">
           <div className="home-page__section">
-            {loadingSequence < 9 ? (
+            {loading ? (
               <Placeholder>
                 <Placeholder.Header>
                   <Placeholder.Line length="medium" />
                 </Placeholder.Header>
                 <Placeholder.Paragraph>
+                  <Placeholder.Line length="medium" />
                   <Placeholder.Line length="medium" />
                   <Placeholder.Line length="medium" />
                   <Placeholder.Line length="long" />
@@ -160,7 +162,7 @@ const HomePage = () => {
         </div>
         <div className="home-page__features">
           <div className="home-page__section">
-            {loadingSequence < 11 ? (
+            {loading ? (
               <Placeholder>
                 <Placeholder.Header>
                   <Placeholder.Line length="medium" />
