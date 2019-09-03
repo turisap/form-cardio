@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import Modal from 'base/Modal';
-import ContactUsFormContent from './ContactUsFormContent/ContactUsformContent';
-
-const StyledContuctUsForm = styled.div``;
+import InvoiceFormContent from './InvoiceFormContent/InvoiceFormContent';
 
 const ContactUsForm = () => {
   const [modalOpen, setModal] = useState(false);
@@ -15,13 +12,11 @@ const ContactUsForm = () => {
   }, []);
 
   return (
-    <StyledContuctUsForm>
-      {modalOpen && (
-        <Modal>
-          <ContactUsFormContent closeHandler={() => setModal(false)} />
-        </Modal>
-      )}
-    </StyledContuctUsForm>
+    modalOpen && (
+      <Modal>
+        <InvoiceFormContent closeHandler={() => setModal(false)} />
+      </Modal>
+    )
   );
 };
 

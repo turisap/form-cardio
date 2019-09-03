@@ -9,19 +9,23 @@ export const theme = {
   border_sound_step_circle: '1px solid #c6c6c6',
   border_offwhite: '1px solid #ffffff',
   border_orange: '1px solid #ff5500',
+  border_dashed_grey: '1px dashed #E2E2E2',
 
   // COLORS
   offwhite_background: '#ffffff',
   orange_background: '#ff5500',
-  grey_background: '#ececec',
+  grey_background: '#fafafa',
   green_background: 'rgb(21, 189, 118)',
   green_background_hover: darken(0.05, 'rgb(21, 189, 118)'),
   dark_background: '#333',
 
   // TEXT
   text_on_dark: '#999',
+  text_on_grey: '#6e6e6e',
   text_on_dark_hover: lighten(0.15, '#999'),
   text_on_red: '#c6c6c6',
   text_orange: '#b23b00',
-  text_on_white: '#959595'
+  text_on_white: '#959595',
+  text_blue: '#6266FF',
+  text_blue_hover: darken(0.2, '#6266FF')
 };

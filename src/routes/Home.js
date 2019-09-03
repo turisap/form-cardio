@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Placeholder } from 'semantic-ui-react';
 
-// TODO style stack as in github markdown (check colors, font monospace)
-
 const StyledHomePage = styled.div`
   align-content: start;
 
@@ -21,43 +19,50 @@ const StyledHomePage = styled.div`
   .home-page__inner {
     margin-top: 80px;
     display: grid;
-    grid-template-rows: 180px 190px 100px;
+    grid-template-rows: 240px 230px 130px;
     grid-template-columns: 500px;
   }
 
   .home-page__section {
     display: grid;
     align-content: center;
+    height: 100%;
   }
 
   .home-page__contents {
     margin-top: 30px;
+    p:last-child {
+      color: red;
+    }
   }
 
   .home-page__stack {
     li {
-      margin-bottom: 4px;
+      margin-bottom: 7px;
     }
   }
 
   .home-page__stackelement {
-    padding: 1px 5px;
-    background: grey;
-    color: black;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 2px 3px;
+    background: rgba(27, 31, 35, 0.05);
+    color: #24292e;
     border-radius: 5px;
     display: inline;
   }
 `;
 
 const HomePage = () => {
-  let [loadingSequence, setLoadingSequence] = useState(0);
+  let [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let loadingInterval = setInterval(() => {
-      setLoadingSequence(loadingSequence++);
-    }, 100);
+    let loadingTimeOut = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
 
-    return () => clearInterval(loadingInterval);
+    return () => clearTimeout(loadingTimeOut);
   }, []);
 
   return (
@@ -65,16 +70,17 @@ const HomePage = () => {
       <div className="home-page__inner">
         <div className="home-page__what">
           <div className="home-page__section">
-            {loadingSequence < 4 ? (
+            {loading ? (
               <Placeholder>
                 <Placeholder.Header>
                   <Placeholder.Line length="medium" />
                 </Placeholder.Header>
                 <Placeholder.Paragraph>
-                  <Placeholder.Line length="very long" />
-                  <Placeholder.Line length="very long" />
-                  <Placeholder.Line length="very long" />
-                  <Placeholder.Line length="very long" />
+                  <Placeholder.Line length="full" />
+                  <Placeholder.Line length="full" />
+                  <Placeholder.Line length="full" />
+                  <Placeholder.Line length="full" />
+                  <Placeholder.Line length="full" />
                 </Placeholder.Paragraph>
               </Placeholder>
             ) : (
@@ -89,6 +95,10 @@ const HomePage = () => {
                     It was inspired after struggling with the forms in previous
                     application
                   </p>
+                  <p>
+                    This project hasn't been optimised for smaller screens and
+                    mobile devices yet
+                  </p>
                 </div>
               </>
             )}
@@ -96,12 +106,13 @@ const HomePage = () => {
         </div>
         <div className="home-page__stack">
           <div className="home-page__section">
-            {loadingSequence < 9 ? (
+            {loading ? (
               <Placeholder>
                 <Placeholder.Header>
                   <Placeholder.Line length="medium" />
                 </Placeholder.Header>
                 <Placeholder.Paragraph>
+                  <Placeholder.Line length="medium" />
                   <Placeholder.Line length="medium" />
                   <Placeholder.Line length="medium" />
                   <Placeholder.Line length="long" />
@@ -119,10 +130,11 @@ const HomePage = () => {
                       </span>
                     </p>
                   </li>
+
                   <li>
                     <p>
                       <span className="home-page__stackelement">
-                        tyled-components
+                        styled-components
                       </span>{' '}
                       for styling
                     </p>
@@ -150,7 +162,7 @@ const HomePage = () => {
         </div>
         <div className="home-page__features">
           <div className="home-page__section">
-            {loadingSequence < 11 ? (
+            {loading ? (
               <Placeholder>
                 <Placeholder.Header>
                   <Placeholder.Line length="medium" />

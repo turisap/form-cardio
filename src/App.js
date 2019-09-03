@@ -3,9 +3,8 @@ import React, { Suspense, lazy } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { FormProvider } from 'react-advanced-form';
 import ErrorBoundary from 'base/ErrorBoundary';
+import ReactGA from 'react-ga';
 import Nprogress from 'base/Nprogress';
-import Loading from 'base/Loading';
-import './App.css';
 import { theme } from './styles/theme';
 import validationMessages from './lib/validationMessages';
 import validationRules from './lib/validationRules';
@@ -16,21 +15,12 @@ import contactUsFormReducer from './reducers/contactUsFormReducer';
 const Home = lazy(() => import('./routes/Home'));
 const SignUpForm = lazy(() => import('./routes/SignUp/SignUpForm'));
 const ContactUsForm = lazy(() => import('./routes/ContactUs/ContactUsForm'));
+const Invoice = lazy(() => import('./routes/Invoice/InvoiceForm'));
 const NotFoundPage = lazy(() => import('./routes/404'));
 
 /* eslint-disable import/first */
 import 'semantic-ui-css/semantic.min.css';
 /* eslint-enable import/first */
-
-// TODO on page load animation like that one on gitlab
-// TODO add loading component
-// TODO add Google Analitics to count visitors
-// TODO try-catch in event listeners
-
-// TODO MUST DO ALL TESTS STRAIGHT AFTER CREATING A FORM
-
-// TODO REACT CONTEXT TO BE ADDED
-// TODO USE CUSTOM HOOKS
 
 const routes = [
   {
@@ -50,10 +40,18 @@ const routes = [
     title: 'Contact Us'
   },
   {
+    path: '/invoice',
+    component: Invoice,
+    title: 'Invoice'
+  },
+  {
     component: NotFoundPage,
     title: 'not found'
   }
 ];
+
+ReactGA.initialize('UA-146938892-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function App() {
   const [contactUsFormState, contactUsFormDispatch] = React.useReducer(
