@@ -9,10 +9,12 @@ const ContactUsForm = () => {
   const [modalOpen, setModal] = useState(false);
   const toggleModal = () => setModal(!modalOpen);
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     const popTimeOut = setTimeout(() => toggleModal(), 200);
     return () => clearTimeout(popTimeOut);
   }, []);
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   return (
     <StyledContuctUsForm>

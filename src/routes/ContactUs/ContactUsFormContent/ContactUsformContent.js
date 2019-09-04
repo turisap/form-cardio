@@ -61,7 +61,7 @@ const StyledContactForm = styled.div`
             text-transform: uppercase;
         }
         
-        p.contactus-form__stepnumber {
+        div.contactus-form__stepnumber {
             align-self: end;
             width: 30px;
             height: 30px
@@ -89,7 +89,7 @@ const StyledContactForm = styled.div`
         &.checked {
             border-bottom: ${props => props.theme.border_sound_active_step};
             
-            p.contactus-form__stepnumber {
+            div.contactus-form__stepnumber {
                 color: ${props => props.theme.text_orange};
                 border: 1px solid ${props => props.theme.text_orange};
             }
@@ -215,14 +215,14 @@ const ContactUsFormContent = props => {
               checked: activeStep >= 1
             })}
           >
-            <p className="contactus-form__stepnumber">
+            <div className="contactus-form__stepnumber">
               <p className={cn('number', { checked: activeStep >= 2 })}>1</p>
               <img
                 className={cn('overlay', { checked: activeStep >= 2 })}
                 alt="overlay"
                 src={CheckedIcon}
               />
-            </p>
+            </div>
             <p className="contactus-form__steptext">Think</p>
           </div>
           <div
@@ -230,14 +230,14 @@ const ContactUsFormContent = props => {
               checked: activeStep >= 2
             })}
           >
-            <p className="contactus-form__stepnumber">
+            <div className="contactus-form__stepnumber">
               <p className={cn('number', { checked: activeStep >= 3 })}>2</p>
               <img
                 className={cn('overlay', { checked: activeStep >= 3 })}
                 alt="overlay"
                 src={CheckedIcon}
               />
-            </p>
+            </div>
             <p className="contactus-form__steptext">Check</p>
           </div>
           <div
@@ -245,14 +245,14 @@ const ContactUsFormContent = props => {
               checked: activeStep >= 3
             })}
           >
-            <p className="contactus-form__stepnumber">
+            <div className="contactus-form__stepnumber">
               <p className={cn('number', { checked: activeStep >= 3 })}>3</p>
               <img
                 className={cn('overlay', { checked: activeStep >= 3 })}
                 alt="overlay"
                 src={CheckedIcon}
               />
-            </p>
+            </div>
             <p className="contactus-form__steptext">Submit</p>
           </div>
         </div>

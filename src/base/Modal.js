@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
+/* eslint-enable no-unused-vars */
 import { createPortal } from 'react-dom';
 
 const modalRoot = document.getElementById('modal');

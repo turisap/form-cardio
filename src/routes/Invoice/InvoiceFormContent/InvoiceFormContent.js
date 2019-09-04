@@ -212,16 +212,32 @@ const InvoiceFormContent = ({ closeHandler }) => {
           <div className="invoice-details">
             <div className="invoice-details__bill">
               <Select label="Bill from" name="bill_from">
-                <option>{faker.company.companyName()}</option>
-                <option>{faker.company.companyName()}</option>
-                <option>{faker.company.companyName()}</option>
-                <option>{faker.company.companyName()}</option>
+                <option key={faker.random.uuid()}>
+                  {faker.company.companyName()}
+                </option>
+                <option key={faker.random.uuid()}>
+                  {faker.company.companyName()}
+                </option>
+                <option key={faker.random.uuid()}>
+                  {faker.company.companyName()}
+                </option>
+                <option key={faker.random.uuid()}>
+                  {faker.company.companyName()}
+                </option>
               </Select>
               <Select label="Bill to" name="bill_to">
-                <option>{faker.company.companyName()}</option>
-                <option>{faker.company.companyName()}</option>
-                <option>{faker.company.companyName()}</option>
-                <option>{faker.company.companyName()}</option>
+                <option key={faker.random.uuid()}>
+                  {faker.company.companyName()}
+                </option>
+                <option key={faker.random.uuid()}>
+                  {faker.company.companyName()}
+                </option>
+                <option key={faker.random.uuid()}>
+                  {faker.company.companyName()}
+                </option>
+                <option key={faker.random.uuid()}>
+                  {faker.company.companyName()}
+                </option>
               </Select>
               <div className="invoice-details__card">
                 <p>{faker.company.companyName()}</p>
@@ -248,7 +264,9 @@ const InvoiceFormContent = ({ closeHandler }) => {
             <div className="invoice-details__details2">
               <Select label="Currency" name="currency">
                 {_.times(10, () => (
-                  <option>{faker.finance.currencyName()}</option>
+                  <option key={faker.random.uuid()}>
+                    {faker.finance.currencyName()}
+                  </option>
                 ))}
               </Select>
               <Input

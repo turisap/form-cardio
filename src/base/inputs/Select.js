@@ -25,8 +25,7 @@ export class Select extends React.Component {
       className,
       name,
       multiple,
-      label,
-      value
+      label
     } = this.props;
 
     const { errors } = fieldState;

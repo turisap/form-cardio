@@ -39,7 +39,9 @@ const StyledItems = styled.div`
 `;
 
 const Items = () => {
+  /* eslint-disable no-unused-vars */
   const [items, setItems] = useState(getRandomItems(7));
+  /* eslint-enable no-unused-vars */
 
   return (
     <>

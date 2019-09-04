@@ -153,15 +153,19 @@ const Steps = ({ setInvalidStep, activeStep }) => {
             onChange={selectHandler}
             value={issueType}
           >
-            <option value={'nothing'}>- - - - - - - - - - - -</option>
-            <option value="Get help with your studies">
+            <option key={0} value={'nothing'}>
+              - - - - - - - - - - - -
+            </option>
+            <option value="Get help with your studies" key={1}>
               Get help with your studies
             </option>
-            <option value="Order cookies">Order a cartoon of cookies</option>
-            <option value="Report strange feelings">
+            <option value="Order cookies" key={2}>
+              Order a cartoon of cookies
+            </option>
+            <option value="Report strange feelings" key={3}>
               Report strange feelings
             </option>
-            <option value="Clarify usage of our API">
+            <option value="Clarify usage of our API" key={4}>
               Clarify usage of our API
             </option>
           </Select>

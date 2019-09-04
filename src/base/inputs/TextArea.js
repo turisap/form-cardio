@@ -15,15 +15,7 @@ class Textarea extends React.Component {
   };
 
   render() {
-    const {
-      fieldProps,
-      fieldState,
-      id,
-      name,
-      className,
-      label,
-      description
-    } = this.props;
+    const { fieldProps, fieldState, id, name, className, label } = this.props;
     const { touched, pristine, valid, invalid, errors } = fieldState;
     delete fieldProps.value;
 
