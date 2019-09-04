@@ -13,5 +13,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * `semantic-ui-react`
 
 ## [DEMO](https://form-cardio.herokuapp.com/)
-on Heroku
+
 
